@@ -101,14 +101,7 @@
     <section class='angry bottom-left full-background slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>It makes me angry</h1>
-      </div>
-      <div class='spacer bottom'></div>
-    </section>
-    <section class='bottom-right full-background slide yoda'>
-      <div class='spacer top'></div>
-      <div class='content'>
-        <h1>A wise man once said...</h1>
+        <h1>It pisses me off...</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -119,7 +112,7 @@
       </div>
       <div class='spacer bottom'></div>
     </section>
-    <section class='bottom-right full-background jarjar slide'>
+    <section class='bottom-left full-background jarjar slide'>
       <div class='spacer top'></div>
       <div class='content'>
         <h1>Let's talk about hate</h1>
@@ -129,13 +122,94 @@
         <a href='http://mangaholix.deviantart.com/art/Kriss-HATES-Jar-Jar-Binks-163018356' target='_blank'>mangaholix</a>
       </div>
     </section>
+    <section class='bottom-right full-background slide writing-presentations'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Writing presentations</h1>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>Some sample code</h1>
+        <h1>Blank page syndrome</h1>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Outlining a.k.a TDD</h1>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='full-background mil slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
         
-        <p><textarea class='code' display='none' mode='ruby'>def method&#x000A;  puts "Hello, World"&#x000A;end</textarea>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Can't mind her own business</h1>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>SRP violation</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class User < ActiveRecord::Base&#x000A;  # Elided for your sanity&#x000A;  # Yes, this was real code&#x000A;  # Yes, I helped write it...&#x000A;&#x000A;  include User::Associations&#x000A;  include User::Validations&#x000A;  include User::Search&#x000A;  include User::DefaultSettings&#x000A;  include User::DefaultPrivacies&#x000A;  include User::Invitations&#x000A;&#x000A;  # even more fucking includes ...&#x000A;end</textarea>
     </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>DCI to the rescue!</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class SessionsController < ApplicationController&#x000A;  def create&#x000A;    # ...&#x000A;    user = find_or_create_from_oauth_data(oauth_data)&#x000A;    # ...&#x000A;  end&#x000A;&#x000A;  def find_or_create_from_oauth_data(oauth_data)&#x000A;    # ...&#x000A;    User.new.tap do |user|&#x000A;      user.extend NewUserProvisioner&#x000A;      user.provision_with oauth_data&#x000A;      user.save!&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    </p>
+        
+        <h5>Lifted and slightly tweaked from <a href="https://github.com/rubypair/rubypair/blob/master/app/controllers/sessions_controller.rb">here</a></h5>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='duckrape full-background slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Monkey raping</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  class Worker&#x000A;    alias_method :unregister_worker_without_before_hook, :unregister_worker&#x000A;&#x000A;    def unregister_worker&#x000A;      run_hook(:before_unregister_worker, self)&#x000A;      unregister_worker_without_before_hook&#x000A;    end&#x000A;&#x000A;    # Unforunately have to override Resque::Worker's +run_hook+ method to call hook on&#x000A;    # APN::QueueManager rather on Resque directly. Any suggestions on&#x000A;    # how to make this more flexible are more than welcome.&#x000A;&#x000A;    def run_hook(name, *args)&#x000A;      # ...&#x000A;      # elight: 4 hours of my life... gone&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <p><img src="images/bullshit.gif"></img></p>
+        
+        <p><textarea class='code' display='none' mode='ruby'># Unforunately have to override Resque::Worker's +run_hook+ method to call hook on&#x000A;# APN::QueueManager rather on Resque directly. Any suggestions on&#x000A;# how to make this more flexible are more than welcome.</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='full-background needle slide top-left'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Dependency injection</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>

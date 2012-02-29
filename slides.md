@@ -65,16 +65,9 @@
 
 !SLIDE bottom-left
 
-# It makes me angry
+# It pisses me off...
 
 }}} images/angry.jpg
-
-
-!SLIDE bottom-right
-
-# A wise man once said...
-
-}}} images/yoda.jpg
 
 
 !SLIDE
@@ -82,22 +75,139 @@
 }}} images/fear-anger-hate.jpg
 
 
-!SLIDE bottom-right
+!SLIDE bottom-left
 
 # Let's talk about hate
 
 }}} images/jarjar.jpg::mangaholix::::http://mangaholix.deviantart.com/art/Kriss-HATES-Jar-Jar-Binks-163018356
 
 
+!SLIDE bottom-right
+
+# Writing presentations
+
+}}} images/writing-presentations.jpg
+
+
 !SLIDE
 
-# Some sample code
+# Blank page syndrome
+
+
+!SLIDE
+
+# Outlining a.k.a TDD
+
+
+!SLIDE
+
+}}} images/mil.jpg
+
+
+!SLIDE
+
+# Can't mind her own business
+
+
+!SLIDE
+
+# SRP violation
 
 ``` ruby
-def method
-  puts "Hello, World"
+class User < ActiveRecord::Base
+  # Elided for your sanity
+  # Yes, this was real code
+  # Yes, I helped write it...
+
+  include User::Associations
+  include User::Validations
+  include User::Search
+  include User::DefaultSettings
+  include User::DefaultPrivacies
+  include User::Invitations
+
+  # even more fucking includes ...
 end
 ```
+
+
+!SLIDE
+
+# DCI to the rescue!
+
+``` ruby
+class SessionsController < ApplicationController
+  def create
+    # ...
+    user = find_or_create_from_oauth_data(oauth_data)
+    # ...
+  end
+
+  def find_or_create_from_oauth_data(oauth_data)
+    # ...
+    User.new.tap do |user|
+      user.extend NewUserProvisioner
+      user.provision_with oauth_data
+      user.save!
+    end
+  end
+end
+```
+
+##### Lifted and slightly tweaked from [here](https://github.com/rubypair/rubypair/blob/master/app/controllers/sessions_controller.rb)
+
+
+!SLIDE
+
+}}} images/duckrape.jpg
+
+
+!SLIDE
+
+# Monkey raping
+
+``` ruby
+module Resque
+  class Worker
+    alias_method :unregister_worker_without_before_hook, :unregister_worker
+
+    def unregister_worker
+      run_hook(:before_unregister_worker, self)
+      unregister_worker_without_before_hook
+    end
+
+    # Unforunately have to override Resque::Worker's +run_hook+ method to call hook on
+    # APN::QueueManager rather on Resque directly. Any suggestions on
+    # how to make this more flexible are more than welcome.
+
+    def run_hook(name, *args)
+      # ...
+      # elight: 4 hours of my life... gone
+    end
+  end
+end
+
+```
+
+
+!SLIDE
+
+<img src="images/bullshit.gif"></img>
+
+``` ruby
+# Unforunately have to override Resque::Worker's +run_hook+ method to call hook on
+# APN::QueueManager rather on Resque directly. Any suggestions on
+# how to make this more flexible are more than welcome.
+```
+
+
+!SLIDE top-left
+
+# Dependency injection
+
+}}} images/needle.jpg
+
+
 
 !NOTES
 
