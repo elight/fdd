@@ -286,6 +286,7 @@ end
 * You have work to do
 * Use what you know
 * Know what you don't
+* Don't be a perfectionist
 * Get shit done
 
 
