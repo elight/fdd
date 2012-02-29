@@ -283,10 +283,9 @@ end
 
 !NOTE
 * Patterns are handy
-* You have work to do
 * Use what you know
 * Know what you don't
-* Don't be a perfectionist
+* Don't menturbate
 * Get shit done
 
 
