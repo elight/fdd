@@ -247,40 +247,46 @@ end
 
 !SLIDE
 
-# Wearing your genius cap
-### Do it in isolation
-### Document the fuck out of it
+!NOTE
+* Wearing your genius cap
+* Do it in isolation
+* Document the fuck out of it
 
 
 !SLIDE
 
-# Breaking convention
-### non-RESTlike Rails controllers
-### "match" routes
+!NOTE
+* Breaking convention
+* non-RESTlike Rails controllers
+* "match" routes
 
 
 !SLIDE
 
-# Predictable code is good!
-### Does not have to be repetitive
-### Think "the typical Rails controller"
-### More surprises = Greater WTFs/minute
-
-!SLIDE
-
-# Naming
-### Intent revealing
-### Put some effort into it
-### Joining "User" and "Teams" and call the class "UserTeams"? Buy a fucking thesaurus!
+!NOTE
+* Predictable code is good!
+* Does not have to be repetitive
+* Think "the typical Rails controller"
+* More surprises = Greater WTFs/minute
 
 
 !SLIDE
 
-### Patterns are handy
-### You have work to do
-### Use what you know
-### Know what you don't
-### Get shit done
+!NOTE
+* Naming
+* Intent revealing
+* Put some effort into it
+* Joining "User" and "Teams" and call the class "UserTeams"? Buy a fucking thesaurus!
+
+
+!SLIDE
+
+!NOTE
+* Patterns are handy
+* You have work to do
+* Use what you know
+* Know what you don't
+* Get shit done
 
 
 !SLIDE
