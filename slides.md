@@ -204,8 +204,7 @@ end
 
 ``` ruby
 # Unforunately have to override Resque::Worker's +run_hook+ method to call hook on
-# APN::QueueManager rather on Resque directly. Any suggestions on
-# how to make this more flexible are more than welcome.
+# APN::QueueManager rather on Resque directly.
 ```
 
 
@@ -218,6 +217,73 @@ end
 
 !SLIDE
 
-# At the end of the day?
-# Fuck it
+# Violating Demeter
+### Encapsulation
 
+
+!SLIDE
+
+## Callbacks / Observer Pattern
+### Tracing them is a PITA
+### Use in ***small doses***
+
+
+!SLIDE
+
+# Blithe indifference to opinions of others
+
+
+!SLIDE
+
+# Remember this guy?
+
+<img src="images/prima.jpg"></img>
+
+!NOTE
+* Be sensitive to your team's skill level
+* Learn what your team knows and what they don't
+* Write code that most of your team can understand
+
+
+!SLIDE
+
+# Wearing your genius cap
+### Do it in isolation
+### Document the fuck out of it
+
+
+!SLIDE
+
+# Breaking convention
+### non-RESTlike Rails controllers
+### "match" routes
+
+
+!SLIDE
+
+# Predictable code is good!
+### Does not have to be repetitive
+### Think "the typical Rails controller"
+### More surprises = Greater WTFs/minute
+
+!SLIDE
+
+# Naming
+### Intent revealing
+### Put some effort into it
+### Joining "User" and "Teams" and call the class "UserTeams"? Buy a fucking thesaurus!
+
+
+!SLIDE
+
+### Patterns are handy
+### You have work to do
+### Use what you know
+### Know what you don't
+### Get shit done
+
+
+!SLIDE
+
+# Now do some fucking work
+### Thank you
