@@ -136,6 +136,8 @@ body {
         background-image: url(../images/monkey-rape.gif); }
       .keydown.deck-container .slide.full-background.needle {
         background-image: url(../images/needle.jpg); }
+      .keydown.deck-container .slide.full-background.nerd-rage {
+        background-image: url(../images/nerd-rage.jpeg); }
       .keydown.deck-container .slide.full-background h1 {
         display: inline;
         position: absolute;

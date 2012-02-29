@@ -228,9 +228,11 @@ end
 ### Use in ***small doses***
 
 
-!SLIDE
+!SLIDE top-left
 
-# Blithe indifference to opinions of others
+# Insensitive...
+
+}}} images/nerd-rage.jpeg
 
 
 !SLIDE
