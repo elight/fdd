@@ -99,14 +99,14 @@
 # Outlining a.k.a TDD
 
 
-!SLIDE
+!SLIDE bottom-left
 
 }}} images/mil.jpg
 
 
 !SLIDE
 
-# Can't mind her own business
+# Can't mind her own business!
 
 
 !SLIDE
@@ -157,14 +157,22 @@ end
 ##### Lifted and slightly tweaked from [here](https://github.com/rubypair/rubypair/blob/master/app/controllers/sessions_controller.rb)
 
 
+!SLIDE bottom-left
+
+# Monkey rape
+
+}}} images/monkey-rape.gif
+
+
 !SLIDE
 
-}}} images/duckrape.jpg
+## Protip
+### Be careful what you google
+### What is seen cannot be unseen
+##### Helpful hint: "[monkey raping](https://www.google.com/search?q=monkey+raping&hl=en&safe=off)"
 
 
 !SLIDE
-
-# Monkey raping
 
 ``` ruby
 module Resque
@@ -192,7 +200,7 @@ end
 
 !SLIDE
 
-<img src="images/bullshit.gif"></img>
+<img src="images/Bullshit.gif" style="width: 600px; height: 300px;"></img>
 
 ``` ruby
 # Unforunately have to override Resque::Worker's +run_hook+ method to call hook on
@@ -208,13 +216,8 @@ end
 }}} images/needle.jpg
 
 
-
-!NOTES
-
- * a note
-
 !SLIDE
 
-# With a Background Image
+# At the end of the day?
+# Fuck it
 
-}}} images/test.png

@@ -132,12 +132,10 @@ body {
         background-image: url(../images/writing-presentations.jpg); }
       .keydown.deck-container .slide.full-background.mil {
         background-image: url(../images/mil.jpg); }
-      .keydown.deck-container .slide.full-background.duckrape {
-        background-image: url(../images/duckrape.jpg); }
+      .keydown.deck-container .slide.full-background.monkey-rape {
+        background-image: url(../images/monkey-rape.gif); }
       .keydown.deck-container .slide.full-background.needle {
         background-image: url(../images/needle.jpg); }
-      .keydown.deck-container .slide.full-background.test {
-        background-image: url(../images/test.png); }
       .keydown.deck-container .slide.full-background h1 {
         display: inline;
         position: absolute;
