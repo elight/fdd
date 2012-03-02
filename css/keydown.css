@@ -138,6 +138,26 @@ body {
         background-image: url(../images/needle.jpg); }
       .keydown.deck-container .slide.full-background.nerd-rage {
         background-image: url(../images/nerd-rage.jpeg); }
+      .keydown.deck-container .slide.full-background.r2d2-hero {
+        background-image: url(../images/r2d2-hero.jpg); }
+      .keydown.deck-container .slide.full-background.prima {
+        background-image: url(../images/prima.jpg); }
+      .keydown.deck-container .slide.full-background.c3p0-backwards {
+        background-image: url(../images/c3p0-backwards.png); }
+      .keydown.deck-container .slide.full-background.starwars {
+        background-image: url(../images/starwars.jpg); }
+      .keydown.deck-container .slide.full-background.fulloffuck {
+        background-image: url(../images/fulloffuck.png); }
+      .keydown.deck-container .slide.full-background.episode1 {
+        background-image: url(../images/episode1.jpg); }
+      .keydown.deck-container .slide.full-background.feelings {
+        background-image: url(../images/feelings.jpg); }
+      .keydown.deck-container .slide.full-background.orthodox {
+        background-image: url(../images/orthodox.jpg); }
+      .keydown.deck-container .slide.full-background.kim {
+        background-image: url(../images/kim.jpg); }
+      .keydown.deck-container .slide.full-background.keep-flying {
+        background-image: url(../images/keep-flying.jpg); }
       .keydown.deck-container .slide.full-background h1 {
         display: inline;
         position: absolute;

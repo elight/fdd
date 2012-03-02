@@ -63,7 +63,8 @@
     padding: 0;
     background: transparent;
     font-family: inherit;
-    font-size: inherit;
+    font-size: 1.5em;
+    line-height: 1.1em;
     padding: 0;
     margin: 0;
     white-space: pre;

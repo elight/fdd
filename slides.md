@@ -6,25 +6,55 @@
 
 }}} images/FFFFFUUUUUUU-.png
 
+!NOTE
+* FDD is about the fail I have seen and participated in
+* Really, it's about you and how you can avoid it
+* But I'm going to relate it all to my personal life...
+* Because it made writing the slides more fun...
+* Because I thought you guys would get a laugh out of it...
+* And, because, hell, it felt pretty fucking cathartic for me!
+
+
 !SLIDE middle
 
 # Evan Light
 ## [@elight](http://twitter.com/elight)
 ## [evan.light@tripledogdare.net](mailto:evan.light@tripledogdare.net)
 
+!NOTE
+* This is me
+* Freelance developer
+* I'm always looking for work
+
 
 !SLIDE bottom-left
 
-# How I feel on any given day
+# How I usually feel on a work day
 
 }}} images/vader.jpg
+
+!NOTE
+* This is also me
+* Me on the inside
+* Bitter
+* Angry
+* Often, not always
 
 
 !SLIDE top-right
 
-# Yet I want to feel like...
+# How I want to feel
 
 }}} images/dalai-lama.jpg
+
+!NOTE
+* Me on the ouside
+* Sometimes on the inside
+* How I want to feel
+* Happy
+* Relaxed
+* Forgiving
+* Gregarious
 
 
 !SLIDE bottom-left
@@ -33,18 +63,32 @@
 
 }}} images/bushy.jpg
 
+!NOTE
+* While writing this...
+* EVAN Y U SO BITTER?
 
-!SLIDE top-right
+
+!SLIDE top-left
+
+# Your tax dollars at work
 
 }}} images/usgovt.png
 
+!NOTE
+* ~12 years
+* Spend money like water
+
 
 !SLIDE top-right
+
+# Easy come, easy go!
 
 }}} images/bubble.png
 
 
 !SLIDE top-right
+
+# Workin for the man... me!
 
 }}} images/bizhell.jpg
 
@@ -111,7 +155,7 @@
 
 !SLIDE
 
-# SRP violation
+# A typical User class
 
 ``` ruby
 class User < ActiveRecord::Base
@@ -185,7 +229,7 @@ module Resque
     end
 
     # Unforunately have to override Resque::Worker's +run_hook+ method to call hook on
-    # APN::QueueManager rather on Resque directly. Any suggestions on
+    # ... (elided to protect the innocent) rather on Resque directly. Any suggestions on
     # how to make this more flexible are more than welcome.
 
     def run_hook(name, *args)
@@ -204,7 +248,7 @@ end
 
 ``` ruby
 # Unforunately have to override Resque::Worker's +run_hook+ method to call hook on
-# APN::QueueManager rather on Resque directly.
+# ... (elided to protect the innocent) rather on Resque directly.
 ```
 
 
@@ -217,37 +261,47 @@ end
 
 !SLIDE
 
-# Violating Demeter
-### Encapsulation
+# "Law" of Demeter
+
+!NOTE
+
+* images/duck-rape.jpg
 
 
 !SLIDE
 
-## Callbacks / Observer Pattern
-### Tracing them is a PITA
-### Use in ***small doses***
+# Demeter
+## You can play with your friends
+## You can play with your privates
+## You can't play with your friend's privates
 
+
+!SLIDE
+
+# Style
+
+```ruby
+  def busy_method
+    please_dont_write_longs_lines(of: code, that: go, on: and, on: and, on: and)
+    followed_by_more(really: hard, to: read, crap: that, just: hurts, my: eyes)
+    because_i_will_find_you(and: hurt, you: for: writing, code: that, is: this, hard: to_read)
+  end
+```
+
+### Get some
 
 !SLIDE top-left
 
-# Insensitive...
+# Insensitive to others feelings
 
 }}} images/nerd-rage.jpeg
 
 
-!SLIDE
+!SLIDE top-left
 
-# Remember this guy?
+# Be a hero in private
 
-<img src="images/prima.jpg"></img>
-
-!NOTE
-* Be sensitive to your team's skill level
-* Learn what your team knows and what they don't
-* Write code that most of your team can understand
-
-
-!SLIDE
+}}} images/r2d2-hero.jpg
 
 !NOTE
 * Wearing your genius cap
@@ -255,24 +309,78 @@ end
 * Document the fuck out of it
 
 
-!SLIDE
+!SLIDE bottom-left
+
+# Remember this guy?
+
+}}} images/prima.jpg
 
 !NOTE
-* Breaking convention
-* non-RESTlike Rails controllers
-* "match" routes
+* Be sensitive to your team's skill level
+* Learn what your team knows and what they don't
+* Write code that most of your team can understand
+
+
+!SLIDE bottom-right
+
+# Breaking convention
+
+}}} images/c3p0-backwards.png
 
 
 !SLIDE
 
+# FAIL
+
+```ruby
+class EXCITINGController < ApplicationController
+  def timeline; end
+  def tag; end
+  def search; end
+  def detail; end
+  # and on, and on, and on...
+end
+```
+
+
+
+!SLIDE
+
+# Predictable is good!
+
+```ruby
+class VeryBoringController < ApplicationController
+  def index; end
+  def new; end
+  def create; end
+  def update; end
+  def show; end
+  def destroy; end
+end
+```
+
 !NOTE
+* Yehuda talked all about this yesterday
 * Predictable code is good!
+* Conventions are GOOD!
+* Constraints are GOOD!
 * Does not have to be repetitive
 * Think "the typical Rails controller"
 * More surprises = Greater WTFs/minute
 
 
 !SLIDE
+
+# Vocabulary
+
+```ruby
+class UserTeam
+  belongs_to :user
+  belongs_to :team
+end
+```
+
+### Learn some
 
 !NOTE
 * Naming
@@ -283,12 +391,70 @@ end
 
 !SLIDE
 
-!NOTE
-* Patterns are handy
-* Use what you know
-* Know what you don't
-* Don't menturbate
-* Get shit done
+```ruby
+class TeamMembership
+  belongs_to :user
+  belongs_to :team
+end
+```
+
+
+!SLIDE
+# But enough code
+
+
+!SLIDE bottom-right
+# Your life & career, at first
+}}} images/starwars.jpg
+!NOTES
+* Everything is great!
+
+
+!SLIDE bottom-left
+# Midichlorians?!?!1!!
+}}} images/fulloffuck.png
+!NOTES
+* Ugly code
+* Meetings
+* Difficult clients
+
+
+!SLIDE bottom-left
+# What you're left with
+}}} images/episode1.jpg
+
+
+!SLIDE bottom-right
+# Stretch out with your *feelings*
+}}} images/feelings.jpg
+!NOTES
+* Who do you serve?
+* All serve somebody..
+* What do you love?
+* What makes you want to live?
+
+
+!SLIDE bottom-left
+# We believe in what we do...
+}}} images/orthodox.jpg
+!NOTES
+* Idealogical purity
+* Arguing about the "right way"
+* It's important but...
+
+
+!SLIDE bottom-right
+# ... but we often lose sight of [*what matters*](https://www.hdsa.org/donations.html)
+}}} images/kim.jpg
+!NOTES
+* 2005
+* HD
+* Kim's health now
+* THIS is what matters
+
+
+!SLIDE
+}}} images/keep-flying.jpg
 
 
 !SLIDE
