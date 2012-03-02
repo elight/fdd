@@ -106,10 +106,10 @@ body {
       box-pack: start; }
       .keydown.deck-container .slide.full-background.FFFFFUUUUUUU- {
         background-image: url(../images/FFFFFUUUUUUU-.png); }
-      .keydown.deck-container .slide.full-background.vader {
-        background-image: url(../images/vader.jpg); }
       .keydown.deck-container .slide.full-background.dalai-lama {
         background-image: url(../images/dalai-lama.jpg); }
+      .keydown.deck-container .slide.full-background.vader {
+        background-image: url(../images/vader.jpg); }
       .keydown.deck-container .slide.full-background.bushy {
         background-image: url(../images/bushy.jpg); }
       .keydown.deck-container .slide.full-background.usgovt {
@@ -156,8 +156,8 @@ body {
         background-image: url(../images/orthodox.jpg); }
       .keydown.deck-container .slide.full-background.kim {
         background-image: url(../images/kim.jpg); }
-      .keydown.deck-container .slide.full-background.keep-flying {
-        background-image: url(../images/keep-flying.jpg); }
+      .keydown.deck-container .slide.full-background.obiwan {
+        background-image: url(../images/obiwan.jpg); }
       .keydown.deck-container .slide.full-background h1 {
         display: inline;
         position: absolute;

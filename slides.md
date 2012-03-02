@@ -1,11 +1,8 @@
 # Frustration Driven Development
 
 !SLIDE bottom-left
-
 # Frustration Driven Development
-
 }}} images/FFFFFUUUUUUU-.png
-
 !NOTE
 * FDD is about the fail I have seen and participated in
 * Really, it's about you and how you can avoid it
@@ -16,37 +13,17 @@
 
 
 !SLIDE middle
-
 # Evan Light
 ## [@elight](http://twitter.com/elight)
 ## [evan.light@tripledogdare.net](mailto:evan.light@tripledogdare.net)
-
 !NOTE
-* This is me
 * Freelance developer
 * I'm always looking for work
 
 
-!SLIDE bottom-left
-
-# How I usually feel on a work day
-
-}}} images/vader.jpg
-
-!NOTE
-* This is also me
-* Me on the inside
-* Bitter
-* Angry
-* Often, not always
-
-
 !SLIDE top-right
-
 # How I want to feel
-
 }}} images/dalai-lama.jpg
-
 !NOTE
 * Me on the ouside
 * Sometimes on the inside
@@ -58,109 +35,93 @@
 
 
 !SLIDE bottom-left
+# How I often feel
+}}} images/vader.jpg
+!NOTE
+* This is also me
+* Bitter
+* Angry
 
+
+!SLIDE bottom-left
 # How did I get this way?
-
 }}} images/bushy.jpg
-
 !NOTE
 * While writing this...
 * EVAN Y U SO BITTER?
 
 
 !SLIDE top-left
-
 # Your tax dollars at work
-
 }}} images/usgovt.png
-
 !NOTE
 * ~12 years
 * Spend money like water
 
 
 !SLIDE top-right
-
 # Easy come, easy go!
-
 }}} images/bubble.png
+!NOTE
+* Some time spent in startups...
 
 
-!SLIDE top-right
-
+!SLIDE bottom-right
 # Workin for the man... me!
-
 }}} images/bizhell.jpg
 
 
 !SLIDE top-left
-
 # I've been doing this a while...
-
 }}} images/atari400.jpg
 
 
 !SLIDE top-right
-
-# I've seen a lot of crap!
-
+# ... and I've seen a lot of crap!
 }}} images/crap.jpg
 
 
 !SLIDE bottom-left
-
-# It pisses me off...
-
+# It pisses me off
 }}} images/angry.jpg
 
 
 !SLIDE
-
 }}} images/fear-anger-hate.jpg
 
 
 !SLIDE bottom-left
-
 # Let's talk about hate
-
 }}} images/jarjar.jpg::mangaholix::::http://mangaholix.deviantart.com/art/Kriss-HATES-Jar-Jar-Binks-163018356
 
 
 !SLIDE bottom-right
-
 # Writing presentations
-
 }}} images/writing-presentations.jpg
 
 
 !SLIDE
-
-# Blank page syndrome
+!NOTES
+* Blank page syndrome
 
 
 !SLIDE
-
 # Outlining a.k.a TDD
-
-
 !SLIDE bottom-left
-
 }}} images/mil.jpg
 
 
 !SLIDE
-
 # Can't mind her own business!
 
 
 !SLIDE
-
 # A typical User class
 
 ``` ruby
 class User < ActiveRecord::Base
   # Elided for your sanity
-  # Yes, this was real code
+  # Yes, this is real code
   # Yes, I helped write it...
 
   include User::Associations
@@ -174,9 +135,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-
 !SLIDE
-
 # DCI to the rescue!
 
 ``` ruby
@@ -202,14 +161,11 @@ end
 
 
 !SLIDE bottom-left
-
 # Monkey rape
-
 }}} images/monkey-rape.gif
 
 
 !SLIDE
-
 ## Protip
 ### Be careful what you google
 ### What is seen cannot be unseen
@@ -217,6 +173,8 @@ end
 
 
 !SLIDE
+
+# Monkey rape
 
 ``` ruby
 module Resque
@@ -243,9 +201,7 @@ end
 
 
 !SLIDE
-
 <img src="images/Bullshit.gif" style="width: 600px; height: 300px;"></img>
-
 ``` ruby
 # Unforunately have to override Resque::Worker's +run_hook+ method to call hook on
 # ... (elided to protect the innocent) rather on Resque directly.
@@ -391,6 +347,7 @@ end
 
 !SLIDE
 
+# Better
 ```ruby
 class TeamMembership
   belongs_to :user
@@ -453,8 +410,9 @@ end
 * THIS is what matters
 
 
-!SLIDE
-}}} images/keep-flying.jpg
+!SLIDE bottom-left
+# The Force will be with you, always
+}}} images/obiwan.jpg
 
 
 !SLIDE
