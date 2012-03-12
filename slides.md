@@ -161,7 +161,7 @@ end
 
 
 !SLIDE bottom-left
-# Monkey rape
+# Monkey patching
 }}} images/monkey-rape.gif
 
 
@@ -174,7 +174,7 @@ end
 
 !SLIDE
 
-# Monkey rape
+# Monkey patching
 
 ``` ruby
 module Resque
@@ -253,41 +253,34 @@ end
 }}} images/nerd-rage.jpeg
 
 
+!SLIDE
+}}} images/photo.png
+
+
+!SLIDE bottom-left
+}}} images/prima.jpg
+!NOTE
+* Don't be this guy
+
+
 !SLIDE top-left
-
 # Be a hero in private
-
 }}} images/r2d2-hero.jpg
-
 !NOTE
 * Wearing your genius cap
 * Do it in isolation
 * Document the fuck out of it
-
-
-!SLIDE bottom-left
-
-# Remember this guy?
-
-}}} images/prima.jpg
-
-!NOTE
 * Be sensitive to your team's skill level
 * Learn what your team knows and what they don't
 * Write code that most of your team can understand
 
-
 !SLIDE bottom-right
-
 # Breaking convention
-
 }}} images/c3p0-backwards.png
 
 
 !SLIDE
-
 # FAIL
-
 ```ruby
 class EXCITINGController < ApplicationController
   def timeline; end
@@ -301,9 +294,7 @@ end
 
 
 !SLIDE
-
 # Predictable is good!
-
 ```ruby
 class VeryBoringController < ApplicationController
   def index; end
@@ -410,9 +401,9 @@ end
 * THIS is what matters
 
 
-!SLIDE bottom-left
-# The Force will be with you, always
-}}} images/obiwan.jpg
+!SLIDE top-right
+
+}}} images/keep-flying.jpg
 
 
 !SLIDE
