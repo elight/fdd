@@ -12,6 +12,10 @@
 * And, because, hell, it felt pretty fucking cathartic for me!
 
 
+!SLIDE
+}}} images/mature.jpg
+
+
 !SLIDE middle
 # Evan Light
 ## [@elight](http://twitter.com/elight)
@@ -106,7 +110,7 @@
 
 
 !SLIDE
-# Outlining a.k.a TDD
+# Mind mqpping a.k.a TDD
 !SLIDE bottom-left
 }}} images/mil.jpg
 
@@ -117,11 +121,10 @@
 
 !SLIDE
 # A typical User class
-
 ``` ruby
 class User < ActiveRecord::Base
   # Elided for your sanity
-  # Yes, this is real code
+  # Yes, this is (mostly) real code
   # Yes, I helped write it...
 
   include User::Associations
@@ -130,6 +133,7 @@ class User < ActiveRecord::Base
   include User::DefaultSettings
   include User::DefaultPrivacies
   include User::Invitations
+  include User::OAuthProvisioning
 
   # even more fucking includes ...
 end
@@ -137,7 +141,6 @@ end
 
 !SLIDE
 # DCI to the rescue!
-
 ``` ruby
 class SessionsController < ApplicationController
   def create
@@ -156,7 +159,6 @@ class SessionsController < ApplicationController
   end
 end
 ```
-
 ##### Lifted and slightly tweaked from [here](https://github.com/rubypair/rubypair/blob/master/app/controllers/sessions_controller.rb)
 
 
@@ -209,33 +211,24 @@ end
 
 
 !SLIDE top-left
-
 # Dependency injection
-
 }}} images/needle.jpg
 
 
 !SLIDE
-
 # "Law" of Demeter
-
 !NOTE
-
-* images/duck-rape.jpg
 
 
 !SLIDE
-
 # Demeter
 ## You can play with your friends
 ## You can play with your privates
-## You can't play with your friend's privates
+## You shouldn't play with your friend's privates
 
 
 !SLIDE
-
 # Style
-
 ```ruby
   def busy_method
     please_dont_write_longs_lines(of: code, that: go, on: and, on: and, on: and)
@@ -243,13 +236,11 @@ end
     because_i_will_find_you(and: hurt, you: for: writing, code: that, is: this, hard: to_read)
   end
 ```
-
 ### Get some
 
+
 !SLIDE top-left
-
 # Insensitive to others feelings
-
 }}} images/nerd-rage.jpeg
 
 
@@ -274,6 +265,7 @@ end
 * Learn what your team knows and what they don't
 * Write code that most of your team can understand
 
+
 !SLIDE bottom-right
 # Breaking convention
 }}} images/c3p0-backwards.png
@@ -291,8 +283,6 @@ class EXCITINGController < ApplicationController
 end
 ```
 
-
-
 !SLIDE
 # Predictable is good!
 ```ruby
@@ -305,9 +295,7 @@ class VeryBoringController < ApplicationController
   def destroy; end
 end
 ```
-
 !NOTE
-* Yehuda talked all about this yesterday
 * Predictable code is good!
 * Conventions are GOOD!
 * Constraints are GOOD!
@@ -317,18 +305,14 @@ end
 
 
 !SLIDE
-
 # Vocabulary
-
 ```ruby
 class UserTeam
   belongs_to :user
   belongs_to :team
 end
 ```
-
-### Learn some
-
+### Get one
 !NOTE
 * Naming
 * Intent revealing
@@ -337,7 +321,6 @@ end
 
 
 !SLIDE
-
 # Better
 ```ruby
 class TeamMembership

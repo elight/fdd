@@ -106,6 +106,8 @@ body {
       box-pack: start; }
       .keydown.deck-container .slide.full-background.FFFFFUUUUUUU- {
         background-image: url(../images/FFFFFUUUUUUU-.png); }
+      .keydown.deck-container .slide.full-background.mature {
+        background-image: url(../images/mature.jpg); }
       .keydown.deck-container .slide.full-background.dalai-lama {
         background-image: url(../images/dalai-lama.jpg); }
       .keydown.deck-container .slide.full-background.vader {
