@@ -31,6 +31,13 @@
       </div>
       <div class='spacer bottom'></div>
     </section>
+    <section class='full-background mature slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='middle slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -139,7 +146,7 @@
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>Outlining a.k.a TDD</h1>
+        <h1>Mind mqpping a.k.a TDD</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -162,7 +169,7 @@
       <div class='content'>
         <h1>A typical User class</h1>
         
-        <p><textarea class='code' display='none' mode='ruby'>class User < ActiveRecord::Base&#x000A;  # Elided for your sanity&#x000A;  # Yes, this is real code&#x000A;  # Yes, I helped write it...&#x000A;&#x000A;  include User::Associations&#x000A;  include User::Validations&#x000A;  include User::Search&#x000A;  include User::DefaultSettings&#x000A;  include User::DefaultPrivacies&#x000A;  include User::Invitations&#x000A;&#x000A;  # even more fucking includes ...&#x000A;end</textarea>
+        <p><textarea class='code' display='none' mode='ruby'>class User < ActiveRecord::Base&#x000A;  # Elided for your sanity&#x000A;  # Yes, this is (mostly) real code&#x000A;  # Yes, I helped write it...&#x000A;&#x000A;  include User::Associations&#x000A;  include User::Validations&#x000A;  include User::Search&#x000A;  include User::DefaultSettings&#x000A;  include User::DefaultPrivacies&#x000A;  include User::Invitations&#x000A;  include User::OAuthProvisioning&#x000A;&#x000A;  # even more fucking includes ...&#x000A;end</textarea>
     </p>
       </div>
       <div class='spacer bottom'></div>
@@ -182,7 +189,7 @@
     <section class='bottom-left full-background monkey-rape slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>Monkey rape</h1>
+        <h1>Monkey patching</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -202,7 +209,7 @@
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>Monkey rape</h1>
+        <h1>Monkey patching</h1>
         
         <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  class Worker&#x000A;    alias_method :unregister_worker_without_before_hook, :unregister_worker&#x000A;&#x000A;    def unregister_worker&#x000A;      run_hook(:before_unregister_worker, self)&#x000A;      unregister_worker_without_before_hook&#x000A;    end&#x000A;&#x000A;    # Unforunately have to override Resque::Worker's +run_hook+ method to call hook on&#x000A;    # ... (elided to protect the innocent) rather on Resque directly. Any suggestions on&#x000A;    # how to make this more flexible are more than welcome.&#x000A;&#x000A;    def run_hook(name, *args)&#x000A;      # ...&#x000A;      # elight: 4 hours of my life... gone&#x000A;    end&#x000A;  end&#x000A;end</textarea>
     </p>
@@ -241,7 +248,7 @@
         
         <h2>You can play with your privates</h2>
         
-        <h2>You can't play with your friend's privates</h2>
+        <h2>You shouldn't play with your friend's privates</h2>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -264,17 +271,24 @@
       </div>
       <div class='spacer bottom'></div>
     </section>
-    <section class='full-background r2d2-hero slide top-left'>
+    <section class='full-background photo slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>Be a hero in private</h1>
+        
       </div>
       <div class='spacer bottom'></div>
     </section>
     <section class='bottom-left full-background prima slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>Remember this guy?</h1>
+        
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='full-background r2d2-hero slide top-left'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Be a hero in private</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -313,7 +327,7 @@
         <p><textarea class='code' display='none' mode='ruby'>class UserTeam&#x000A;  belongs_to :user&#x000A;  belongs_to :team&#x000A;end</textarea>
     </p>
         
-        <h3>Learn some</h3>
+        <h3>Get one</h3>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -376,10 +390,10 @@
       </div>
       <div class='spacer bottom'></div>
     </section>
-    <section class='bottom-left full-background obiwan slide'>
+    <section class='full-background keep-flying slide top-right'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>The Force will be with you, always</h1>
+        
       </div>
       <div class='spacer bottom'></div>
     </section>

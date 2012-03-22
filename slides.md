@@ -162,22 +162,8 @@ end
 ##### Lifted and slightly tweaked from [here](https://github.com/rubypair/rubypair/blob/master/app/controllers/sessions_controller.rb)
 
 
-!SLIDE bottom-left
-# Monkey patching
-}}} images/monkey-rape.gif
-
-
 !SLIDE
-## Protip
-### Be careful what you google
-### What is seen cannot be unseen
-##### Helpful hint: "[monkey raping](https://www.google.com/search?q=monkey+raping&hl=en&safe=off)"
-
-
-!SLIDE
-
 # Monkey patching
-
 ``` ruby
 module Resque
   class Worker
@@ -198,7 +184,6 @@ module Resque
     end
   end
 end
-
 ```
 
 
