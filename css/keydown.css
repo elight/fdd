@@ -108,6 +108,8 @@ body {
         background-image: url(../images/FFFFFUUUUUUU-.png); }
       .keydown.deck-container .slide.full-background.mature {
         background-image: url(../images/mature.jpg); }
+      .keydown.deck-container .slide.full-background.stuff_i_do {
+        background-image: url(../images/stuff_i_do.png); }
       .keydown.deck-container .slide.full-background.dalai-lama {
         background-image: url(../images/dalai-lama.jpg); }
       .keydown.deck-container .slide.full-background.vader {
@@ -130,22 +132,20 @@ body {
         background-image: url(../images/fear-anger-hate.jpg); }
       .keydown.deck-container .slide.full-background.jarjar {
         background-image: url(../images/jarjar.jpg); }
-      .keydown.deck-container .slide.full-background.writing-presentations {
-        background-image: url(../images/writing-presentations.jpg); }
       .keydown.deck-container .slide.full-background.mil {
         background-image: url(../images/mil.jpg); }
       .keydown.deck-container .slide.full-background.needle {
         background-image: url(../images/needle.jpg); }
       .keydown.deck-container .slide.full-background.nerd-rage {
         background-image: url(../images/nerd-rage.jpeg); }
-      .keydown.deck-container .slide.full-background.photo {
-        background-image: url(../images/photo.png); }
       .keydown.deck-container .slide.full-background.prima {
         background-image: url(../images/prima.jpg); }
       .keydown.deck-container .slide.full-background.r2d2-hero {
         background-image: url(../images/r2d2-hero.jpg); }
       .keydown.deck-container .slide.full-background.c3p0-backwards {
         background-image: url(../images/c3p0-backwards.png); }
+      .keydown.deck-container .slide.full-background.han {
+        background-image: url(../images/han.jpg); }
       .keydown.deck-container .slide.full-background.starwars {
         background-image: url(../images/starwars.jpg); }
       .keydown.deck-container .slide.full-background.fulloffuck {

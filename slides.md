@@ -25,13 +25,18 @@
 * I'm always looking for work
 
 
+!SLIDE middle
+}}} images/stuff_i_do.png
+
+
+!SLIDE
+# Real Talk
+
+
 !SLIDE top-right
 # How I want to feel
 }}} images/dalai-lama.jpg
 !NOTE
-* Me on the ouside
-* Sometimes on the inside
-* How I want to feel
 * Happy
 * Relaxed
 * Forgiving
@@ -94,72 +99,424 @@
 }}} images/fear-anger-hate.jpg
 
 
-!SLIDE bottom-left
+!SLIDE top-right
 # Let's talk about hate
 }}} images/jarjar.jpg::mangaholix::::http://mangaholix.deviantart.com/art/Kriss-HATES-Jar-Jar-Binks-163018356
 
 
-!SLIDE bottom-right
-# Writing presentations
-}}} images/writing-presentations.jpg
+!SLIDE
+# We love to talk about TDD
 
 
 !SLIDE
+# Mosts Rubyists don't TDD!
+!NOTE
+* Most apps that I inherit: extremely poor to zero test coverage
+
+
+!SLIDE
+# The Long Poorly-Named Method
+
+
+!SLIDE
+```ruby
+class User
+  def rectify
+    if self.payments.find { |p| p.status == "pending" }
+      self.payments.select { |p| p.status == "pending" } do |p|
+        p.apply_to!(self)
+      end
+    end
+    if self.bills.find { |b| b.due_date > Time.now }
+      self.bills.select { |b| b.due_date > Time.now }.each do |b|
+        b.submit_to_collections!
+      end
+    end
+    if self.bills.find { |b| b.payment_date.nil? }
+      self.bills.select { |b| b.payment_date.nil? }.each do |b|
+        b.send_to self
+      end
+    end
+  end
+end
+```
+!NOTE
+* 3 different things going on here
+* Should be at least 3 different methods
+* try extracting blocks of code into well named methods
+
+
+!SLIDE
+# Put it on life support
 !NOTES
-* Blank page syndrome
+* Write a thorough suite of tests, hitting the various paths
+* Isolate the method from its external dependencies
+* Stubbing works well here
 
 
 !SLIDE
-# Mind mqpping a.k.a TDD
+# Now, operate!
+!NOTES
+* Extract method
+
+
+!SLIDE
+# A little better...
+```ruby
+class User
+  def process_open_invoices
+    process_pending_payments
+    notify_collections_about_overdue_bills
+    send_me_my_remaining_bills
+  end
+
+  def process_pending_payments
+    #...
+  end
+
+  def notify_collections_about_overdue_bills
+    if self.bills.find { |b| b.due_date > Time.now }
+      self.bills.select { |b| b.due_date > Time.now }.each do |b|
+        b.submit_to_collections!
+      end
+    end
+  end
+
+  def send_me_my_remaining_bills
+    # ...
+  end
+end
+
+# etc..
+```
+!NOTE
+* Should the User even know how to process his own open invoices?
+* Seems like something perhaps better suited to a separate class entirely
+
+
+!SLIDE
+# Let's focus here
+```ruby
+  def notify_collections_about_overdue_bills
+    if self.bills.find { |b| b.due_date > Time.now }
+      self.bills.select { |b| b.past_due? }.each do |b|
+        b.submit_to_collections!
+      end
+    end
+  end
+```
+!NOTE
+# "notify collections" sounds like sending a message
+# what's up with this #find?
+
+
+!SLIDE
+# Extract class
+```ruby
+class Collections
+  def self.file_claim_against(bill)
+    # ...
+  end
+end
+```
+
+
+!SLIDE
+# Maybe not perfect but a lot better
+```ruby
+  def notify_collections_about_overdue_bills
+    past_due_bills.each do |bill|
+      Collections.file_claim_against bill
+    end
+  end
+
+  private
+
+  def past_due_bills
+    self.bills.select { |bill| b.past_due? }
+  end
+```
+
+
+!SLIDE
+# Should User know how to process open invoices?
+
+
+!SLIDE
+# The  typical "User" class
+!NOTE
+* Classes tend to suffer from this before methods
+* Cluttered full of all manner of behavior user-related
+
+
 !SLIDE bottom-left
 }}} images/mil.jpg
+!NOTE
+* Unlike my mother-in-law
 
 
 !SLIDE
-# Can't mind her own business!
-
-
-!SLIDE
-# A typical User class
-``` ruby
-class User < ActiveRecord::Base
+# Move code into modules?
+```ruby
+class User
   # Elided for your sanity
   # Yes, this is (mostly) real code
-  # Yes, I helped write it...
+  # Yes, I helped write it a year or so ago
+  # Yes, I hate my past self at times
 
   include User::Associations
   include User::Validations
   include User::Search
   include User::DefaultSettings
   include User::DefaultPrivacies
+  include User::Permissions
   include User::Invitations
   include User::OAuthProvisioning
 
-  # even more fucking includes ...
+  # even more includes.... HALP!
 end
 ```
+##### See [Mixins, a Refactoring Anti-Pattern](http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern)
+
+!NOTES
+* Steve Klabnik: still just pushing bits around.
+* Now they're just in several files
+* Still too many responsibilities
+
 
 !SLIDE
-# DCI to the rescue!
-``` ruby
-class SessionsController < ApplicationController
-  def create
-    # ...
-    user = find_or_create_from_oauth_data(oauth_data)
+# Get a lackey!
+
+
+!SLIDE
+# Decorator
+```ruby
+require 'delegate'
+
+class Permissions < SimpleDelegator
+  def can_perform?(action_name)
     # ...
   end
+end
+```
+!NOTE
+* delegate is in stdlib
+* SimpleDelegator is easy to use
 
-  def find_or_create_from_oauth_data(oauth_data)
+
+!SLIDE
+```ruby
+def controller_action
+  user = User.find(...)
+  user = UserWithPermissions.new(user)
+
+  unless user.can_perform?(:controller_action)
+    raise PermissionError, "..."
+  end
+end
+```
+!NOTE
+* In effect, adds more behaviors to the object without further cluttering the User clas
+
+
+!SLIDE
+# Here's another kind
+
+
+!SLIDE ruby
+``` ruby
+class Permissions
+  def self.for(actor)
+    @actor = actor
+  end
+
+  def allows?(action_name)
     # ...
-    User.new.tap do |user|
-      user.extend NewUserProvisioner
-      user.provision_with oauth_data
-      user.save!
+  end
+end
+```
+!NOTES
+# Depends on an abstract "Actor", not a User
+# "Actor" is just a duck type
+# User isn't mentioned anywhere in this code
+
+
+!SLIDE
+```ruby
+def controller_action
+  user = User.find(...)
+  permissions = Permissions.for(user)
+
+  unless permissions.can_perform?(:controller_action)
+    raise PermissionError, "..."
+  end
+end
+```
+!NOTES
+# Permission is "plain old Ruby code"
+# No dependency on Rails
+# Easy to unit test
+
+
+!SLIDE
+# Let's face it:
+# Most templates suck
+
+
+!SLIDE
+# How about a templating example?
+
+
+!SLIDE
+```
+
+%div.poor_template
+  - if some_condition
+    = render_this
+  - elsif another_condition
+    = render_that
+  - else
+    = render_those
+```
+
+
+!SLIDE
+# You could use Helpers...
+
+
+!SLIDE
+```ruby
+module SomeHelper
+  def render_whatever_through_a_helper
+    if some_nasty_condition
+      render_this
+    elsif another_nasty_condition
+      render_that
+    else
+      render_those
     end
   end
 end
 ```
-##### Lifted and slightly tweaked from [here](https://github.com/rubypair/rubypair/blob/master/app/controllers/sessions_controller.rb)
+
+```
+
+%div.better_templating
+  = render_whatever_through_a_helper
+```
+
+
+!SLIDE
+# Helpers are poor objects
+
+
+!SLIDE
+```ruby
+module EmployerHelper
+  def redirect_to_not_allowed_if_not_employer
+  end
+
+  def city_province_country_string(model)
+  end
+
+  def welcome_text
+  end
+
+  def employer_videos_create_job
+  end
+
+  def employer_videos_read_results
+  end
+
+  def employer_videos_customize_jobs
+  end
+end
+```
+!NOTES
+* Modules are good but..
+* Helpers are behavior buckets without data... without context
+* Much like "FooUtils" back in the java days
+* Junkyard or Island of Misfit Toys of your app
+* Or, if you prefer, structured programming in an OO world
+
+
+!SLIDE
+# What if we delegate to real objects?
+
+
+!SLIDE
+```ruby
+class SomeConditionPresenter
+  def render
+    #...
+  end
+end
+
+class AnotherConditionPresenter
+  # Same interface as above
+end
+
+class DefaultConditionPresenter
+  # Get the idea?
+end
+```
+
+
+!SLIDE
+# We still have to pick a "presenter"
+
+
+!SLIDE
+```ruby
+module FooHelper
+  def conditional_presenter
+    klass =
+      if some_nasty_condition
+        SomeConditionPresenter
+      elsif another_nasty_condition
+        AnotherConditionPresenter
+      else
+        DefaultConditionPresenter
+      end
+    klass.new
+  end
+end
+```
+
+
+!SLIDE
+# Delegation should not be your first idea
+!NOTES
+* Delegation, abstraction really, adds more classes
+* Abstraction always has a cost
+* Especially useful if a template has multiple conditional states
+* Encapsulate each state in a class
+
+
+```
+
+%div.cleaner_templating
+  = conditional_presenter.render
+```
+!NOTES
+* Delegate accordingly
+
+
+!SLIDE
+# How do I choose?
+!NOTES
+* I often default to using helpers
+* I extract class when there are a few related behaviors
+* I tend to use helpers when a template has few external dependencies
+* I tend to use presenters when a template has more external dependencies
+
+
+!SLIDE
+# Want to try using presenters?
+## [modest_presenter](http://github.com/elight/modest_presenter)
+### Simple implementation but flexible
+## [draper](http://github.com/jcasimir/draper)
+### Convention driven usage but complex implementation
 
 
 !SLIDE
@@ -167,20 +524,18 @@ end
 ``` ruby
 module Resque
   class Worker
-    alias_method :unregister_worker_without_before_hook, :unregister_worker
-
-    def unregister_worker
-      run_hook(:before_unregister_worker, self)
-      unregister_worker_without_before_hook
-    end
-
-    # Unforunately have to override Resque::Worker's +run_hook+ method to call hook on
-    # ... (elided to protect the innocent) rather on Resque directly. Any suggestions on
-    # how to make this more flexible are more than welcome.
+    # Unforunately have to override Resque::Worker's +run_hook+
+    # method to call hook on [MySpecialSnowflake gem] rather on
+    # Resque directly. Any suggestions on how to make this more
+    # flexible are more than welcome.
 
     def run_hook(name, *args)
+      # Me: 4 hours of my life... gone
+      # FFFFFFFUUUUUUUUUUUUUUUU
+
+      return unless hook = MySpecialSnowflake.send(name)
+
       # ...
-      # elight: 4 hours of my life... gone
     end
   end
 end
@@ -190,8 +545,10 @@ end
 !SLIDE
 <img src="images/Bullshit.gif" style="width: 600px; height: 300px;"></img>
 ``` ruby
-# Unforunately have to override Resque::Worker's +run_hook+ method to call hook on
-# ... (elided to protect the innocent) rather on Resque directly.
+# Unforunately have to override Resque::Worker's +run_hook+
+# method to call hook on [MySpecialSnowflake gem] rather on
+# Resque directly. Any suggestions on how to make this more
+# flexible are more than welcome.
 ```
 
 
@@ -199,6 +556,41 @@ end
 # Dependency injection
 }}} images/needle.jpg
 
+
+!SLIDE
+# Fork, patch, and pull request!
+```ruby
+module Resque
+  def self.hook_responders
+    @hook_responders ||= [self]
+    @hook_responders
+  end
+
+  def self.register_hook_responder(responder)
+    hook_responsers << responder
+  end
+end
+```
+!NOTES
+# Oh, Resque doesn't let us do that?
+# Let's tell Resque that we are an additional dependency
+# It's Open Source, right?
+# Use your fork until the patch gets integrated
+
+
+!SLIDE
+# There is no monkey patch
+```ruby
+module Resque
+  class Worker
+    def run_hook(name, *args)
+      hook = Resque.hook_responders.find { |r| r.send(name) }
+      return unless hook
+      # ...
+    end
+  end
+end
+```
 
 !SLIDE
 # "Law" of Demeter
@@ -227,10 +619,6 @@ end
 !SLIDE top-left
 # Insensitive to others feelings
 }}} images/nerd-rage.jpeg
-
-
-!SLIDE
-}}} images/photo.png
 
 
 !SLIDE bottom-left
@@ -296,6 +684,9 @@ class UserTeam
   belongs_to :user
   belongs_to :team
 end
+
+class CandidateEmployerJob
+end
 ```
 ### Get one
 !NOTE
@@ -312,11 +703,18 @@ class TeamMembership
   belongs_to :user
   belongs_to :team
 end
+
+class Applicant
+end
 ```
 
 
 !SLIDE
 # But enough code
+
+
+!SLIDE
+}}} images/han.jpg
 
 
 !SLIDE bottom-right
@@ -369,12 +767,6 @@ end
 * THIS is what matters
 
 
-!SLIDE top-right
-
+!SLIDE bottom-right
+# Thank you
 }}} images/keep-flying.jpg
-
-
-!SLIDE
-
-# Now do some fucking work
-### Thank you
