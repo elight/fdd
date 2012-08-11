@@ -18,6 +18,7 @@
 
 !SLIDE middle
 # Evan Light
+## **<u>Code Janitor</u>**
 ## [@elight](http://twitter.com/elight)
 ## [evan.light@tripledogdare.net](mailto:evan.light@tripledogdare.net)
 !NOTE
@@ -31,6 +32,12 @@
 
 !SLIDE
 # Real Talk
+## (or "a recipe to put me out of business")
+!NOTE
+* Going to talk about:
+** Our failings as developers
+** My failings
+** But, most importantly, how we can all try to get better
 
 
 !SLIDE top-right
@@ -105,20 +112,30 @@
 
 
 !SLIDE
-# We love to talk about TDD
+# We _love_ to talk about TDD
 
 
 !SLIDE
-# Mosts Rubyists don't TDD!
+# Most Rubyists don't write tests!
+### FFFFUUUUUUU
 !NOTE
-* Most apps that I inherit: extremely poor to zero test coverage
+* I've straw-polled many confs. Maybe half of attendees claim to TDD
+* I don't believe conferences are cross-sections: above average
 
 
 !SLIDE
-# The Long Poorly-Named Method
+# TATFT
+## Test all the f@!%#ing time!
 
 
 !SLIDE
+# The Long & Poorly-Named Method
+##### (or, in the words of Samuel L. Jackson, <u>"it's Red, Green, **Refactor** mother%&@#er!"</u>)
+### FFFFUUUUUUU
+
+
+!SLIDE
+# Don't try to read this code
 ```ruby
 class User
   def rectify
@@ -147,7 +164,19 @@ end
 
 
 !SLIDE
+# We're going to operate!
+
+
+!SLIDE
 # Put it on life support
+
+
+!SLIDE left
+## Stub out dependencies in test setup
+## Test all branches
+## Test all boundaries
+## Watch tests pass
+###### Great book on the topic: [Working with Legacy Code](http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052_)
 !NOTES
 * Write a thorough suite of tests, hitting the various paths
 * Isolate the method from its external dependencies
@@ -161,15 +190,24 @@ end
 
 
 !SLIDE
-# A little better...
+# Extract method
 ```ruby
 class User
-  def process_open_invoices
+  def rectify
     process_pending_payments
     notify_collections_about_overdue_bills
     send_me_my_remaining_bills
   end
+end
+```
+!NOTE
+* Seems like something perhaps better suited to a separate class entirely
 
+
+!SLIDE
+# Extract method (cont'd)
+```ruby
+class User
   def process_pending_payments
     #...
   end
@@ -186,12 +224,22 @@ class User
     # ...
   end
 end
-
-# etc..
 ```
-!NOTE
-* Should the User even know how to process his own open invoices?
-* Seems like something perhaps better suited to a separate class entirely
+
+
+!SLIDE
+# Rename method
+
+```ruby
+class User
+  # previously just 'rectify'
+  def rectify_account
+    process_pending_payments
+    notify_collections_about_overdue_bills
+    send_me_my_remaining_bills
+  end
+end
+```
 
 
 !SLIDE
@@ -199,7 +247,7 @@ end
 ```ruby
   def notify_collections_about_overdue_bills
     if self.bills.find { |b| b.due_date > Time.now }
-      self.bills.select { |b| b.past_due? }.each do |b|
+      self.bills.select { |b| b.due_date > Time.now }.each do |b|
         b.submit_to_collections!
       end
     end
@@ -213,20 +261,25 @@ end
 !SLIDE
 # Extract class
 ```ruby
-class Collections
-  def self.file_claim_against(bill)
-    # ...
+class CollectionClaim
+  def self.file_against(bill)
+    self.new(bill)
+  end
+
+  def initialize
+    # biz logic would start here
   end
 end
 ```
 
 
 !SLIDE
-# Maybe not perfect but a lot better
+# Delegate to the extracted class
 ```ruby
+class User
   def notify_collections_about_overdue_bills
     past_due_bills.each do |bill|
-      Collections.file_claim_against bill
+      CollectionsClaim.file_against bill
     end
   end
 
@@ -235,15 +288,26 @@ end
   def past_due_bills
     self.bills.select { |bill| b.past_due? }
   end
+end
+
+class Bill
+  def past_due?
+    due_date > Time.now
+  end
+end
 ```
 
 
-!SLIDE
-# Should User know how to process open invoices?
+!SLIDE left
+# Should User know how to rectify his own account
+## Hint: **rectify** & **account**
+## Think about it (later ;-) )
 
 
 !SLIDE
-# The  typical "User" class
+# The typical "User" class
+### FFFFUUUUUUU
+
 !NOTE
 * Classes tend to suffer from this before methods
 * Cluttered full of all manner of behavior user-related
@@ -276,7 +340,7 @@ class User
   # even more includes.... HALP!
 end
 ```
-##### See [Mixins, a Refactoring Anti-Pattern](http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern)
+###### See [Mixins, a Refactoring Anti-Pattern](http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern)
 
 !NOTES
 * Steve Klabnik: still just pushing bits around.
@@ -289,11 +353,10 @@ end
 
 
 !SLIDE
-# Decorator
 ```ruby
 require 'delegate'
 
-class Permissions < SimpleDelegator
+class WithPermissions < SimpleDelegator
   def can_perform?(action_name)
     # ...
   end
@@ -308,10 +371,10 @@ end
 ```ruby
 def controller_action
   user = User.find(...)
-  user = UserWithPermissions.new(user)
+  user = WithPermissions.new(user)
 
   unless user.can_perform?(:controller_action)
-    raise PermissionError, "..."
+    fail PermissionError, "..."
   end
 end
 ```
@@ -330,7 +393,7 @@ class Permissions
     @actor = actor
   end
 
-  def allows?(action_name)
+  def allow?(action_name)
     # ...
   end
 end
@@ -347,8 +410,8 @@ def controller_action
   user = User.find(...)
   permissions = Permissions.for(user)
 
-  unless permissions.can_perform?(:controller_action)
-    raise PermissionError, "..."
+  unless permissions.allow?(:controller_action)
+    fail PermissionError, "..."
   end
 end
 ```
@@ -361,10 +424,7 @@ end
 !SLIDE
 # Let's face it:
 # Most templates suck
-
-
-!SLIDE
-# How about a templating example?
+### FFFFUUUUUUU
 
 
 !SLIDE
@@ -445,6 +505,23 @@ end
 
 
 !SLIDE
+#Replace this...
+```ruby
+module SomeHelper
+  def render_whatever_through_a_helper
+    if some_nasty_condition
+      render_this
+    elsif another_nasty_condition
+      render_that
+    else
+      render_those
+    end
+  end
+end
+```
+
+!SLIDE
+#... with this
 ```ruby
 class SomeConditionPresenter
   def render
@@ -485,7 +562,7 @@ end
 
 
 !SLIDE
-# Delegation should not be your first idea
+# Presenters probably should not be your first choice
 !NOTES
 * Delegation, abstraction really, adds more classes
 * Abstraction always has a cost
@@ -514,6 +591,7 @@ end
 !SLIDE
 # Want to try using presenters?
 ## [modest_presenter](http://github.com/elight/modest_presenter)
+### Warning: I wrote this ;-)
 ### Simple implementation but flexible
 ## [draper](http://github.com/jcasimir/draper)
 ### Convention driven usage but complex implementation
@@ -521,6 +599,10 @@ end
 
 !SLIDE
 # Monkey patching
+### FFFFUUUUUUU
+
+
+!SLIDE
 ``` ruby
 module Resque
   class Worker
@@ -593,12 +675,13 @@ end
 ```
 
 !SLIDE
-# "Law" of Demeter
+# Breaking Demeter
+### FFFFUUUUUUU
 !NOTE
 
 
 !SLIDE
-# Demeter
+# "Law of Demeter" redux
 ## You can play with your friends
 ## You can play with your privates
 ## You shouldn't play with your friend's privates
@@ -606,6 +689,7 @@ end
 
 !SLIDE
 # Style
+### FFFFUUUUUUU
 ```ruby
   def busy_method
     please_dont_write_longs_lines(of: code, that: go, on: and, on: and, on: and)
@@ -613,11 +697,15 @@ end
     because_i_will_find_you(and: hurt, you: for: writing, code: that, is: this, hard: to_read)
   end
 ```
-### Get some
+# Get some
+
+
+!SLIDE
+# Not considering your audience
+### FFFFUUUUUUU
 
 
 !SLIDE top-left
-# Insensitive to others feelings
 }}} images/nerd-rage.jpeg
 
 
@@ -639,13 +727,16 @@ end
 * Write code that most of your team can understand
 
 
-!SLIDE bottom-right
+!SLIDE
 # Breaking convention
+### FFFFUUUUUUU
+
+
+!SLIDE bottom-right
 }}} images/c3p0-backwards.png
 
 
 !SLIDE
-# FAIL
 ```ruby
 class EXCITINGController < ApplicationController
   def timeline; end
@@ -677,6 +768,10 @@ end
 * More surprises = Greater WTFs/minute
 
 
+# Vocabulary
+### FFFFUUUUUUU
+
+
 !SLIDE
 # Vocabulary
 ```ruby
@@ -688,7 +783,7 @@ end
 class CandidateEmployerJob
 end
 ```
-### Get one
+# Get one
 !NOTE
 * Naming
 * Intent revealing
@@ -742,8 +837,7 @@ end
 # Stretch out with your *feelings*
 }}} images/feelings.jpg
 !NOTES
-* Who do you serve?
-* All serve somebody..
+* Why are you a developer?
 * What do you love?
 * What makes you want to live?
 
