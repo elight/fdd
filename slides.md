@@ -124,7 +124,7 @@
 
 
 !SLIDE
-# TATFT
+# [TATFT](http://smartic.us/2008/08/15/tatft-i-feel-a-revolution-coming-on/)
 ## Test all the f@!%#ing time!
 
 
@@ -190,7 +190,7 @@ end
 
 
 !SLIDE
-# Extract method
+# [Extract method](http://www.refactoring.com/catalog/extractMethod.html)
 ```ruby
 class User
   def rectify
@@ -205,7 +205,7 @@ end
 
 
 !SLIDE
-# Extract method (cont'd)
+# [Extract method](http://www.refactoring.com/catalog/extractMethod.html) (cont'd)
 ```ruby
 class User
   def process_pending_payments
@@ -228,7 +228,7 @@ end
 
 
 !SLIDE
-# Rename method
+# [Rename method](http://www.refactoring.com/catalog/renameMethod.html)]
 
 ```ruby
 class User
@@ -259,7 +259,7 @@ end
 
 
 !SLIDE
-# Extract class
+# [Extract class](http://www.refactoring.com/catalog/extractClass.html)
 ```ruby
 class CollectionClaim
   def self.file_against(bill)
@@ -864,3 +864,14 @@ end
 !SLIDE bottom-right
 # Thank you
 }}} images/keep-flying.jpg
+
+
+!SLIDE
+# Citations
+
+### <u>[Working with Legacy Code](http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052_)</u>
+### <u>[Refactoring](http://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672)</u>
+### [Mixins, a Refactoring Anti-Pattern](http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern)
+### [modest_presenter](http://github.com/elight/modest_presenter)
+### [draper](http://github.com/jcasimir/draper)
+### [Huntington's Disease Society of America](https://www.hdsa.org/donations.html)
