@@ -87,7 +87,6 @@
 !SLIDE top-left
 # I've been doing this a while...
 }}} images/atari400.jpg
-# 16 years or so
 
 
 !SLIDE top-right
