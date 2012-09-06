@@ -5,11 +5,11 @@
 }}} images/FFFFFUUUUUUU-.png
 !NOTE
 * FDD is about the fail I have seen and participated in
-* Really, it's about you and how you can avoid it
+* It's about you and how you can avoid it
 * But I'm going to relate it all to my personal life...
 * Because it made writing the slides more fun...
 * Because I thought you guys would get a laugh out of it...
-* And, because, hell, it felt pretty fucking cathartic for me!
+* And, because, hell, it felt pretty cathartic for me!
 
 
 !SLIDE
@@ -18,7 +18,7 @@
 
 !SLIDE middle
 # Evan Light
-## **<u>Code Janitor</u>**
+## **<u>Freelance Code Janitor</u>**
 ## [@elight](http://twitter.com/elight)
 ## [evan.light@tripledogdare.net](mailto:evan.light@tripledogdare.net)
 !NOTE
@@ -34,10 +34,8 @@
 # Real Talk
 ## (or "a recipe to put me out of business")
 !NOTE
-* Going to talk about:
-** Our failings as developers
-** My failings
-** But, most importantly, how we can all try to get better
+# Not saying other talks aren't real
+# I'm going to drop some truth bombs
 
 
 !SLIDE top-right
@@ -45,9 +43,9 @@
 }}} images/dalai-lama.jpg
 !NOTE
 * Happy
+* Gregarious
 * Relaxed
 * Forgiving
-* Gregarious
 
 
 !SLIDE bottom-left
@@ -55,16 +53,14 @@
 }}} images/vader.jpg
 !NOTE
 * This is also me
-* Bitter
 * Angry
+* Bitter
 
 
 !SLIDE bottom-left
 # How did I get this way?
 }}} images/bushy.jpg
 !NOTE
-* While writing this...
-* EVAN Y U SO BITTER?
 
 
 !SLIDE top-left
@@ -72,14 +68,15 @@
 }}} images/usgovt.png
 !NOTE
 * ~12 years
-* Spend money like water
+* Piss away tax dollars
 
 
 !SLIDE top-right
 # Easy come, easy go!
 }}} images/bubble.png
 !NOTE
-* Some time spent in startups...
+* 2x failed startup employee
+* '99 and '08
 
 
 !SLIDE bottom-right
@@ -90,11 +87,12 @@
 !SLIDE top-left
 # I've been doing this a while...
 }}} images/atari400.jpg
+# 16 years or so
 
 
 !SLIDE top-right
-# ... and I've seen a lot of crap!
-}}} images/crap.jpg
+# ... and I've seen a lot of shit
+}}} images/crap.png
 
 
 !SLIDE bottom-left
@@ -106,13 +104,15 @@
 }}} images/fear-anger-hate.jpg
 
 
-!SLIDE top-right
+!SLIDE bottom-right
 # Let's talk about hate
 }}} images/jarjar.jpg::mangaholix::::http://mangaholix.deviantart.com/art/Kriss-HATES-Jar-Jar-Binks-163018356
 
 
 !SLIDE
 # We _love_ to talk about TDD
+!NOTE
+* Straw poll
 
 
 !SLIDE
@@ -125,13 +125,19 @@
 
 !SLIDE
 # [TATFT](http://smartic.us/2008/08/15/tatft-i-feel-a-revolution-coming-on/)
-## Test all the f@!%#ing time!
+!NOTE
+* Bryan Liles in audience
 
 
 !SLIDE
 # The Long & Poorly-Named Method
 ##### (or, in the words of Samuel L. Jackson, <u>"it's Red, Green, **Refactor** mother%&@#er!"</u>)
 ### FFFFUUUUUUU
+!NOTE
+
+
+!SLIDE
+# Most Rubyists don't refactor!
 
 
 !SLIDE
@@ -144,8 +150,8 @@ class User
         p.apply_to!(self)
       end
     end
-    if self.bills.find { |b| b.due_date > Time.now }
-      self.bills.select { |b| b.due_date > Time.now }.each do |b|
+    if self.bills.find { |b| b.due_date < Time.now }
+      self.bills.select { |b| b.due_date < Time.now }.each do |b|
         b.submit_to_collections!
       end
     end
@@ -159,8 +165,7 @@ end
 ```
 !NOTE
 * 3 different things going on here
-* Should be at least 3 different methods
-* try extracting blocks of code into well named methods
+* try extracting blocks of code into descriptively named methods
 
 
 !SLIDE
@@ -177,10 +182,6 @@ end
 ## Test all boundaries
 ## Watch tests pass
 ###### Great book on the topic: [Working with Legacy Code](http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052_)
-!NOTES
-* Write a thorough suite of tests, hitting the various paths
-* Isolate the method from its external dependencies
-* Stubbing works well here
 
 
 !SLIDE
@@ -213,8 +214,8 @@ class User
   end
 
   def notify_collections_about_overdue_bills
-    if self.bills.find { |b| b.due_date > Time.now }
-      self.bills.select { |b| b.due_date > Time.now }.each do |b|
+    if self.bills.find { |b| b.due_date < Time.now }
+      self.bills.select { |b| b.due_date < Time.now }.each do |b|
         b.submit_to_collections!
       end
     end
@@ -228,7 +229,7 @@ end
 
 
 !SLIDE
-# [Rename method](http://www.refactoring.com/catalog/renameMethod.html)]
+# [Rename method](http://www.refactoring.com/catalog/renameMethod.html)
 
 ```ruby
 class User
@@ -246,8 +247,8 @@ end
 # Let's focus here
 ```ruby
   def notify_collections_about_overdue_bills
-    if self.bills.find { |b| b.due_date > Time.now }
-      self.bills.select { |b| b.due_date > Time.now }.each do |b|
+    if self.bills.find { |b| b.due_date < Time.now }
+      self.bills.select { |b| b.due_date < Time.now }.each do |b|
         b.submit_to_collections!
       end
     end
@@ -255,7 +256,9 @@ end
 ```
 !NOTE
 # "notify collections" sounds like sending a message
-# what's up with this #find?
+# notify = verb
+# collections = object, rcvr
+# object should rcv msg
 
 
 !SLIDE
@@ -272,9 +275,23 @@ class CollectionClaim
 end
 ```
 
+!SLIDE
+# Then we have...
+```ruby
+class User
+  def notify_collections_about_overdue_bills
+    if self.bills.find { |b| b.due_date < Time.now }
+      self.bills.select { |b| b.due_date < Time.now }.each do |b|
+        CollectionsClaim.file_against bill
+      end
+    end
+  end
+end
+```
+
 
 !SLIDE
-# Delegate to the extracted class
+# A couple more [Extract method](http://www.refactoring.com/catalog/extractMethod.html)s later
 ```ruby
 class User
   def notify_collections_about_overdue_bills
@@ -292,7 +309,7 @@ end
 
 class Bill
   def past_due?
-    due_date > Time.now
+    due_date < Time.now
   end
 end
 ```
@@ -307,7 +324,6 @@ end
 !SLIDE
 # The typical "User" class
 ### FFFFUUUUUUU
-
 !NOTE
 * Classes tend to suffer from this before methods
 * Cluttered full of all manner of behavior user-related
@@ -316,7 +332,9 @@ end
 !SLIDE bottom-left
 }}} images/mil.jpg
 !NOTE
-* Unlike my mother-in-law
+* Doesn't mind her own business
+* User class can't mind its own business
+* It has to know about everything
 
 
 !SLIDE
@@ -343,7 +361,7 @@ end
 ###### See [Mixins, a Refactoring Anti-Pattern](http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern)
 
 !NOTES
-* Steve Klabnik: still just pushing bits around.
+* Steve Klabnik's blog post
 * Now they're just in several files
 * Still too many responsibilities
 
@@ -352,73 +370,43 @@ end
 # Get a lackey!
 
 
-!SLIDE
-```ruby
-require 'delegate'
-
-class WithPermissions < SimpleDelegator
-  def can_perform?(action_name)
-    # ...
-  end
-end
-```
-!NOTE
-* delegate is in stdlib
-* SimpleDelegator is easy to use
-
-
-!SLIDE
-```ruby
-def controller_action
-  user = User.find(...)
-  user = WithPermissions.new(user)
-
-  unless user.can_perform?(:controller_action)
-    fail PermissionError, "..."
-  end
-end
-```
-!NOTE
-* In effect, adds more behaviors to the object without further cluttering the User clas
-
-
-!SLIDE
-# Here's another kind
-
-
 !SLIDE ruby
 ``` ruby
-class Permissions
-  def self.for(actor)
-    @actor = actor
-  end
+require 'delegate'
+class UserWithNormalPermissions < SimpleDelegator
+  ALLOWED_METHODS = %w[do_something]
 
-  def allow?(action_name)
-    # ...
+  def method_missing(args={})
+    unless ALLOWED_METHODS.include?(args[0])
+      fail PermissionError, ...
+    end
+    # Call "super" or else delegation doesn't happen!
+    super
   end
 end
 ```
 !NOTES
-# Depends on an abstract "Actor", not a User
-# "Actor" is just a duck type
 # User isn't mentioned anywhere in this code
+# Can be used for anything that responds to ALLOWED_METHODS
 
 
 !SLIDE
 ```ruby
-def controller_action
-  user = User.find(...)
-  permissions = Permissions.for(user)
+def some_controller_action
+  user = UserWithNormalPermissions.new(
+    User.find(...)
+  )
 
-  unless permissions.allow?(:controller_action)
-    fail PermissionError, "..."
-  end
+  user.do_something
+rescue PermissionError => p
+  # ...
 end
 ```
 !NOTES
-# Permission is "plain old Ruby code"
+# UserWithNormalPermissions is "plain old Ruby code"
 # No dependency on Rails
 # Easy to unit test
+# "Tell, don't ask"
 
 
 !SLIDE
@@ -567,7 +555,6 @@ end
 * Delegation, abstraction really, adds more classes
 * Abstraction always has a cost
 * Especially useful if a template has multiple conditional states
-* Encapsulate each state in a class
 
 
 ```
@@ -582,10 +569,10 @@ end
 !SLIDE
 # How do I choose?
 !NOTES
-* I often default to using helpers
-* I extract class when there are a few related behaviors
-* I tend to use helpers when a template has few external dependencies
-* I tend to use presenters when a template has more external dependencies
+* I often default to using Helpers
+* I ExtractClass when there are a few related behaviors
+* I tend to use Helpers when a template has few external dependencies
+* I tend to use Presenters when a template has more external dependencies
 
 
 !SLIDE
@@ -606,7 +593,7 @@ end
 ``` ruby
 module Resque
   class Worker
-    # Unforunately have to override Resque::Worker's +run_hook+
+    # Unfortunately have to override Resque::Worker's +run_hook+
     # method to call hook on [MySpecialSnowflake gem] rather on
     # Resque directly. Any suggestions on how to make this more
     # flexible are more than welcome.
@@ -627,7 +614,7 @@ end
 !SLIDE
 <img src="images/Bullshit.gif" style="width: 600px; height: 300px;"></img>
 ``` ruby
-# Unforunately have to override Resque::Worker's +run_hook+
+# Unfortunately have to override Resque::Worker's +run_hook+
 # method to call hook on [MySpecialSnowflake gem] rather on
 # Resque directly. Any suggestions on how to make this more
 # flexible are more than welcome.
@@ -692,9 +679,9 @@ end
 ### FFFFUUUUUUU
 ```ruby
   def busy_method
-    please_dont_write_longs_lines(of: code, that: go, on: and, on: and, on: and)
-    followed_by_more(really: hard, to: read, crap: that, just: hurts, my: eyes)
-    because_i_will_find_you(and: hurt, you: for: writing, code: that, is: this, hard: to_read)
+    please_dont_write_longs_lines(of: code, that: go, on: and)
+    followed_by_more(really: hard, to: read, crap: that, hurts_my: eyes)
+    because_i_will_find_you(and: hurt, you: for: writing, this: shit)
   end
 ```
 # Get some
@@ -713,7 +700,6 @@ end
 }}} images/prima.jpg
 !NOTE
 * Don't be this guy
-
 
 !SLIDE top-left
 # Be a hero in private
@@ -808,12 +794,8 @@ end
 # But enough code
 
 
-!SLIDE
-}}} images/han.jpg
-
-
 !SLIDE bottom-right
-# Your life & career, at first
+# Your career at first
 }}} images/starwars.jpg
 !NOTES
 * Everything is great!
@@ -823,9 +805,10 @@ end
 # Midichlorians?!?!1!!
 }}} images/fulloffuck.png
 !NOTES
-* Ugly code
-* Meetings
-* Difficult clients
+* Java and J2EE
+* Meetings and managers and clients
+* Deadlines
+* Stress
 
 
 !SLIDE bottom-left
@@ -837,17 +820,18 @@ end
 # Stretch out with your *feelings*
 }}} images/feelings.jpg
 !NOTES
-* Why are you a developer?
-* What do you love?
-* What makes you want to live?
+* Listen to your frustration
+* Frustration =~ pain/suffering
+* Expectation out of alignment w/ Reality
+* Which is wrong? E or R?
 
 
 !SLIDE bottom-left
 # We believe in what we do...
 }}} images/orthodox.jpg
 !NOTES
+* Presentations, like this, talking about ways to work better
 * Idealogical purity
-* Arguing about the "right way"
 * It's important but...
 
 
@@ -855,10 +839,14 @@ end
 # ... but we often lose sight of [*what matters*](https://www.hdsa.org/donations.html)
 }}} images/kim.jpg
 !NOTES
-* 2005
-* HD
-* Kim's health now
-* THIS is what matters
+* Kim
+* 5 regrets of the dying
+* Being true to yourself matters
+* Lost 2 years of my life
+* Damien Katz
+* Happy
+* Why wait?
+* Jump off that cliff
 
 
 !SLIDE bottom-right
@@ -874,4 +862,5 @@ end
 ### [Mixins, a Refactoring Anti-Pattern](http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern)
 ### [modest_presenter](http://github.com/elight/modest_presenter)
 ### [draper](http://github.com/jcasimir/draper)
+### [Regrets of the Dying](http://www.inspirationandchai.com/Regrets-of-the-Dying.html)
 ### [Huntington's Disease Society of America](https://www.hdsa.org/donations.html)

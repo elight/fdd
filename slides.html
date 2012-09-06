@@ -39,18 +39,18 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='middle slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Evan Light</h1>
-
-<h2><strong><u>Code Janitor</u></strong></h2>
-
-<h2><a href="http://twitter.com/elight">@elight</a></h2>
-
-<h2><a href="mailto:evan.light@tripledogdare.net">evan.light@tripledogdare.net</a></h2>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Evan Light</h1>
+        
+        <h2><strong><u>Freelance Code Janitor</u></strong></h2>
+        
+        <h2><a href="http://twitter.com/elight">@elight</a></h2>
+        
+        <h2><a href="mailto:evan.light@tripledogdare.net">evan.light@tripledogdare.net</a></h2>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='full-background middle slide stuff_i_do'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -113,13 +113,15 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1>I've been doing this a while...</h1>
+        
+        <h1>16 years or so</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
     <section class='crap full-background slide top-right'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>... and I've seen a lot of crap!</h1>
+        <h1>... and I've seen a lot of shit</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -137,7 +139,7 @@
       </div>
       <div class='spacer bottom'></div>
     </section>
-    <section class='full-background jarjar slide top-right'>
+    <section class='bottom-right full-background jarjar slide'>
       <div class='spacer top'></div>
       <div class='content'>
         <h1>Let's talk about hate</h1>
@@ -167,8 +169,6 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1><a href="http://smartic.us/2008/08/15/tatft-i-feel-a-revolution-coming-on/">TATFT</a></h1>
-        
-        <h2>Test all the f@!%#ing time!</h2>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -184,15 +184,22 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Don't try to read this code</h1>
-
-<p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def rectify&#x000A;    if self.payments.find { |p| p.status == "pending" }&#x000A;      self.payments.select { |p| p.status == "pending" } do |p|&#x000A;        p.apply_to!(self)&#x000A;      end&#x000A;    end&#x000A;    if self.bills.find { |b| b.due_date > Time.now }&#x000A;      self.bills.select { |b| b.due_date > Time.now }.each do |b|&#x000A;        b.submit_to_collections!&#x000A;      end&#x000A;    end&#x000A;    if self.bills.find { |b| b.payment_date.nil? }&#x000A;      self.bills.select { |b| b.payment_date.nil? }.each do |b|&#x000A;        b.send_to self&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Most Rubyists don't refactor!</h1>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Don't try to read this code</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def rectify&#x000A;    if self.payments.find { |p| p.status == "pending" }&#x000A;      self.payments.select { |p| p.status == "pending" } do |p|&#x000A;        p.apply_to!(self)&#x000A;      end&#x000A;    end&#x000A;    if self.bills.find { |b| b.due_date < Time.now }&#x000A;      self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;        b.submit_to_collections!&#x000A;      end&#x000A;    end&#x000A;    if self.bills.find { |b| b.payment_date.nil? }&#x000A;      self.bills.select { |b| b.payment_date.nil? }.each do |b|&#x000A;        b.send_to self&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -208,20 +215,20 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='left slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h2>Stub out dependencies in test setup</h2>
-
-<h2>Test all branches</h2>
-
-<h2>Test all boundaries</h2>
-
-<h2>Watch tests pass</h2>
-
-<h6>Great book on the topic: <a href="http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052_">Working with Legacy Code</a></h6>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h2>Stub out dependencies in test setup</h2>
+        
+        <h2>Test all branches</h2>
+        
+        <h2>Test all boundaries</h2>
+        
+        <h2>Watch tests pass</h2>
+        
+        <h6>Great book on the topic: <a href="http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052_">Working with Legacy Code</a></h6>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -230,65 +237,75 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1><a href="http://www.refactoring.com/catalog/extractMethod.html">Extract method</a></h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def rectify&#x000A;    process_pending_payments&#x000A;    notify_collections_about_overdue_bills&#x000A;    send_me_my_remaining_bills&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1><a href="http://www.refactoring.com/catalog/extractMethod.html">Extract method</a></h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def rectify&#x000A;    process_pending_payments&#x000A;    notify_collections_about_overdue_bills&#x000A;    send_me_my_remaining_bills&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1><a href="http://www.refactoring.com/catalog/extractMethod.html">Extract method</a> (cont'd)</h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def process_pending_payments&#x000A;    #...&#x000A;  end&#x000A;&#x000A;  def notify_collections_about_overdue_bills&#x000A;    if self.bills.find { |b| b.due_date > Time.now }&#x000A;      self.bills.select { |b| b.due_date > Time.now }.each do |b|&#x000A;        b.submit_to_collections!&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;&#x000A;  def send_me_my_remaining_bills&#x000A;    # ...&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1><a href="http://www.refactoring.com/catalog/extractMethod.html">Extract method</a> (cont'd)</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def process_pending_payments&#x000A;    #...&#x000A;  end&#x000A;&#x000A;  def notify_collections_about_overdue_bills&#x000A;    if self.bills.find { |b| b.due_date < Time.now }&#x000A;      self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;        b.submit_to_collections!&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;&#x000A;  def send_me_my_remaining_bills&#x000A;    # ...&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1><a href="http://www.refactoring.com/catalog/renameMethod.html">Rename method</a>]</h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  # previously just 'rectify'&#x000A;  def rectify_account&#x000A;    process_pending_payments&#x000A;    notify_collections_about_overdue_bills&#x000A;    send_me_my_remaining_bills&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1><a href="http://www.refactoring.com/catalog/renameMethod.html">Rename method</a></h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  # previously just 'rectify'&#x000A;  def rectify_account&#x000A;    process_pending_payments&#x000A;    notify_collections_about_overdue_bills&#x000A;    send_me_my_remaining_bills&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Let's focus here</h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>def notify_collections_about_overdue_bills&#x000A;  if self.bills.find { |b| b.due_date > Time.now }&#x000A;    self.bills.select { |b| b.due_date > Time.now }.each do |b|&#x000A;      b.submit_to_collections!&#x000A;    end&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Let's focus here</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>def notify_collections_about_overdue_bills&#x000A;  if self.bills.find { |b| b.due_date < Time.now }&#x000A;    self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;      b.submit_to_collections!&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1><a href="http://www.refactoring.com/catalog/extractClass.html">Extract class</a></h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>class CollectionClaim&#x000A;  def self.file_against(bill)&#x000A;    self.new(bill)&#x000A;  end&#x000A;&#x000A;  def initialize&#x000A;    # biz logic would start here&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1><a href="http://www.refactoring.com/catalog/extractClass.html">Extract class</a></h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class CollectionClaim&#x000A;  def self.file_against(bill)&#x000A;    self.new(bill)&#x000A;  end&#x000A;&#x000A;  def initialize&#x000A;    # biz logic would start here&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Delegate to the extracted class</h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def notify_collections_about_overdue_bills&#x000A;    past_due_bills.each do |bill|&#x000A;      CollectionsClaim.file_against bill&#x000A;    end&#x000A;  end&#x000A;&#x000A;  private&#x000A;&#x000A;  def past_due_bills&#x000A;    self.bills.select { |bill| b.past_due? }&#x000A;  end&#x000A;end&#x000A;&#x000A;class Bill&#x000A;  def past_due?&#x000A;    due_date > Time.now&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Then we have...</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def notify_collections_about_overdue_bills&#x000A;    if self.bills.find { |b| b.due_date < Time.now }&#x000A;      self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;        CollectionsClaim.file_against bill&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>A couple more <a href="http://www.refactoring.com/catalog/extractMethod.html">Extract method</a>s later</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def notify_collections_about_overdue_bills&#x000A;    past_due_bills.each do |bill|&#x000A;      CollectionsClaim.file_against bill&#x000A;    end&#x000A;  end&#x000A;&#x000A;  private&#x000A;&#x000A;  def past_due_bills&#x000A;    self.bills.select { |bill| b.past_due? }&#x000A;  end&#x000A;end&#x000A;&#x000A;class Bill&#x000A;  def past_due?&#x000A;    due_date < Time.now&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='left slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -317,17 +334,17 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Move code into modules?</h1>
-
-<p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  # Elided for your sanity&#x000A;  # Yes, this is (mostly) real code&#x000A;  # Yes, I helped write it a year or so ago&#x000A;  # Yes, I hate my past self at times&#x000A;&#x000A;  include User::Associations&#x000A;  include User::Validations&#x000A;  include User::Search&#x000A;  include User::DefaultSettings&#x000A;  include User::DefaultPrivacies&#x000A;  include User::Permissions&#x000A;  include User::Invitations&#x000A;  include User::OAuthProvisioning&#x000A;&#x000A;  # even more includes.... HALP!&#x000A;end</textarea>
-</p>
-
-<h6>See <a href="http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern">Mixins, a Refactoring Anti-Pattern</a></h6>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Move code into modules?</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  # Elided for your sanity&#x000A;  # Yes, this is (mostly) real code&#x000A;  # Yes, I helped write it a year or so ago&#x000A;  # Yes, I hate my past self at times&#x000A;&#x000A;  include User::Associations&#x000A;  include User::Validations&#x000A;  include User::Search&#x000A;  include User::DefaultSettings&#x000A;  include User::DefaultPrivacies&#x000A;  include User::Permissions&#x000A;  include User::Invitations&#x000A;  include User::OAuthProvisioning&#x000A;&#x000A;  # even more includes.... HALP!&#x000A;end</textarea>
+    </p>
+        
+        <h6>See <a href="http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern">Mixins, a Refactoring Anti-Pattern</a></h6>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -335,45 +352,22 @@
       </div>
       <div class='spacer bottom'></div>
     </section>
-    <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>require 'delegate'&#x000A;&#x000A;class WithPermissions < SimpleDelegator&#x000A;  def can_perform?(action_name)&#x000A;    # ...&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
-    <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>def controller_action&#x000A;  user = User.find(...)&#x000A;  user = WithPermissions.new(user)&#x000A;&#x000A;  unless user.can_perform?(:controller_action)&#x000A;    fail PermissionError, "..."&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
-    <section class='slide'>
+    <section class='ruby slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>Here's another kind</h1>
+        <p><textarea class='code' display='none' mode='ruby'>require 'delegate'&#x000A;class UserWithNormalPermissions < SimpleDelegator&#x000A;  ALLOWED_METHODS = %w[do_something]&#x000A;&#x000A;  def method_missing(args={})&#x000A;    unless ALLOWED_METHODS.include?(args[0])&#x000A;      fail PermissionError, ...&#x000A;    end&#x000A;    # Call "super" or else delegation doesn't happen!&#x000A;    super&#x000A;  end&#x000A;end</textarea>
+    </p>
       </div>
       <div class='spacer bottom'></div>
     </section>
-    <section class='ruby slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>class Permissions&#x000A;  def self.for(actor)&#x000A;    @actor = actor&#x000A;  end&#x000A;&#x000A;  def allow?(action_name)&#x000A;    # ...&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>def controller_action&#x000A;  user = User.find(...)&#x000A;  permissions = Permissions.for(user)&#x000A;&#x000A;  unless permissions.allow?(:controller_action)&#x000A;    fail PermissionError, "..."&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <p><textarea class='code' display='none' mode='ruby'>def some_controller_action&#x000A;  user = UserWithNormalPermissions.new(&#x000A;    User.find(...)&#x000A;  )&#x000A;&#x000A;  user.do_something&#x000A;rescue PermissionError => p&#x000A;  # ...&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -386,13 +380,13 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode=''>%div.poor_template&#x000A;  - if some_condition&#x000A;    = render_this&#x000A;  - elsif another_condition&#x000A;    = render_that&#x000A;  - else&#x000A;    = render_those</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <p><textarea class='code' display='none' mode=''>%div.poor_template&#x000A;  - if some_condition&#x000A;    = render_this&#x000A;  - elsif another_condition&#x000A;    = render_that&#x000A;  - else&#x000A;    = render_those</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -401,16 +395,16 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>module SomeHelper&#x000A;  def render_whatever_through_a_helper&#x000A;    if some_nasty_condition&#x000A;      render_this&#x000A;    elsif another_nasty_condition&#x000A;      render_that&#x000A;    else&#x000A;      render_those&#x000A;    end&#x000A;  end&#x000A;end</textarea>
-</p>
-    
-    <p><textarea class='code' display='none' mode=''>%div.better_templating&#x000A;  = render_whatever_through_a_helper</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <p><textarea class='code' display='none' mode='ruby'>module SomeHelper&#x000A;  def render_whatever_through_a_helper&#x000A;    if some_nasty_condition&#x000A;      render_this&#x000A;    elsif another_nasty_condition&#x000A;      render_that&#x000A;    else&#x000A;      render_those&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    </p>
+        
+        <p><textarea class='code' display='none' mode=''>%div.better_templating&#x000A;  = render_whatever_through_a_helper</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -419,13 +413,13 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>module EmployerHelper&#x000A;  def redirect_to_not_allowed_if_not_employer&#x000A;  end&#x000A;&#x000A;  def city_province_country_string(model)&#x000A;  end&#x000A;&#x000A;  def welcome_text&#x000A;  end&#x000A;&#x000A;  def employer_videos_create_job&#x000A;  end&#x000A;&#x000A;  def employer_videos_read_results&#x000A;  end&#x000A;&#x000A;  def employer_videos_customize_jobs&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <p><textarea class='code' display='none' mode='ruby'>module EmployerHelper&#x000A;  def redirect_to_not_allowed_if_not_employer&#x000A;  end&#x000A;&#x000A;  def city_province_country_string(model)&#x000A;  end&#x000A;&#x000A;  def welcome_text&#x000A;  end&#x000A;&#x000A;  def employer_videos_create_job&#x000A;  end&#x000A;&#x000A;  def employer_videos_read_results&#x000A;  end&#x000A;&#x000A;  def employer_videos_customize_jobs&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -434,47 +428,47 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Replace this...</h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>module SomeHelper&#x000A;  def render_whatever_through_a_helper&#x000A;    if some_nasty_condition&#x000A;      render_this&#x000A;    elsif another_nasty_condition&#x000A;      render_that&#x000A;    else&#x000A;      render_those&#x000A;    end&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Replace this...</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>module SomeHelper&#x000A;  def render_whatever_through_a_helper&#x000A;    if some_nasty_condition&#x000A;      render_this&#x000A;    elsif another_nasty_condition&#x000A;      render_that&#x000A;    else&#x000A;      render_those&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>... with this</h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>class SomeConditionPresenter&#x000A;  def render&#x000A;    #...&#x000A;  end&#x000A;end&#x000A;&#x000A;class AnotherConditionPresenter&#x000A;  # Same interface as above&#x000A;end&#x000A;&#x000A;class DefaultConditionPresenter&#x000A;  # Get the idea?&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>... with this</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class SomeConditionPresenter&#x000A;  def render&#x000A;    #...&#x000A;  end&#x000A;end&#x000A;&#x000A;class AnotherConditionPresenter&#x000A;  # Same interface as above&#x000A;end&#x000A;&#x000A;class DefaultConditionPresenter&#x000A;  # Get the idea?&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>We still have to pick a "presenter"</h1>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>We still have to pick a "presenter"</h1>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>module FooHelper&#x000A;  def conditional_presenter&#x000A;    klass =&#x000A;      if some_nasty_condition&#x000A;        SomeConditionPresenter&#x000A;      elsif another_nasty_condition&#x000A;        AnotherConditionPresenter&#x000A;      else&#x000A;        DefaultConditionPresenter&#x000A;      end&#x000A;    klass.new&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <p><textarea class='code' display='none' mode='ruby'>module FooHelper&#x000A;  def conditional_presenter&#x000A;    klass =&#x000A;      if some_nasty_condition&#x000A;        SomeConditionPresenter&#x000A;      elsif another_nasty_condition&#x000A;        AnotherConditionPresenter&#x000A;      else&#x000A;        DefaultConditionPresenter&#x000A;      end&#x000A;    klass.new&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Presenters probably should not be your first choice</h1>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Presenters probably should not be your first choice</h1>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -483,22 +477,22 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Want to try using presenters?</h1>
-
-<h2><a href="http://github.com/elight/modest_presenter">modest_presenter</a></h2>
-
-<h3>Warning: I wrote this ;-)</h3>
-
-<h3>Simple implementation but flexible</h3>
-
-<h2><a href="http://github.com/jcasimir/draper">draper</a></h2>
-
-<h3>Convention driven usage but complex implementation</h3>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Want to try using presenters?</h1>
+        
+        <h2><a href="http://github.com/elight/modest_presenter">modest_presenter</a></h2>
+        
+        <h3>Warning: I wrote this ;-)</h3>
+        
+        <h3>Simple implementation but flexible</h3>
+        
+        <h2><a href="http://github.com/jcasimir/draper">draper</a></h2>
+        
+        <h3>Convention driven usage but complex implementation</h3>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -509,22 +503,22 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  class Worker&#x000A;    # Unforunately have to override Resque::Worker's +run_hook+&#x000A;    # method to call hook on [MySpecialSnowflake gem] rather on&#x000A;    # Resque directly. Any suggestions on how to make this more&#x000A;    # flexible are more than welcome.&#x000A;&#x000A;    def run_hook(name, *args)&#x000A;      # Me: 4 hours of my life... gone&#x000A;      # FFFFFFFUUUUUUUUUUUUUUUU&#x000A;&#x000A;      return unless hook = MySpecialSnowflake.send(name)&#x000A;&#x000A;      # ...&#x000A;    end&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  class Worker&#x000A;    # Unfortunately have to override Resque::Worker's +run_hook+&#x000A;    # method to call hook on [MySpecialSnowflake gem] rather on&#x000A;    # Resque directly. Any suggestions on how to make this more&#x000A;    # flexible are more than welcome.&#x000A;&#x000A;    def run_hook(name, *args)&#x000A;      # Me: 4 hours of my life... gone&#x000A;      # FFFFFFFUUUUUUUUUUUUUUUU&#x000A;&#x000A;      return unless hook = MySpecialSnowflake.send(name)&#x000A;&#x000A;      # ...&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><img src="images/Bullshit.gif" style="width: 600px; height: 300px;"></img>
-    <textarea class='code' display='none' mode='ruby'># Unforunately have to override Resque::Worker's +run_hook+&#x000A;# method to call hook on [MySpecialSnowflake gem] rather on&#x000A;# Resque directly. Any suggestions on how to make this more&#x000A;# flexible are more than welcome.</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <p><img src="images/Bullshit.gif" style="width: 600px; height: 300px;"></img>
+        <textarea class='code' display='none' mode='ruby'># Unfortunately have to override Resque::Worker's +run_hook+&#x000A;# method to call hook on [MySpecialSnowflake gem] rather on&#x000A;# Resque directly. Any suggestions on how to make this more&#x000A;# flexible are more than welcome.</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='full-background needle slide top-left'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -533,25 +527,25 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Fork, patch, and pull request!</h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  def self.hook_responders&#x000A;    @hook_responders ||= [self]&#x000A;    @hook_responders&#x000A;  end&#x000A;&#x000A;  def self.register_hook_responder(responder)&#x000A;    hook_responsers << responder&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Fork, patch, and pull request!</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  def self.hook_responders&#x000A;    @hook_responders ||= [self]&#x000A;    @hook_responders&#x000A;  end&#x000A;&#x000A;  def self.register_hook_responder(responder)&#x000A;    hook_responsers << responder&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>There is no monkey patch</h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  class Worker&#x000A;    def run_hook(name, *args)&#x000A;      hook = Resque.hook_responders.find { |r| r.send(name) }&#x000A;      return unless hook&#x000A;      # ...&#x000A;    end&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>There is no monkey patch</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  class Worker&#x000A;    def run_hook(name, *args)&#x000A;      hook = Resque.hook_responders.find { |r| r.send(name) }&#x000A;      return unless hook&#x000A;      # ...&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -575,19 +569,19 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Style</h1>
-    
-    <h3>FFFFUUUUUUU</h3>
-    
-    <p><textarea class='code' display='none' mode='ruby'>def busy_method&#x000A;  please_dont_write_longs_lines(of: code, that: go, on: and, on: and, on: and)&#x000A;  followed_by_more(really: hard, to: read, crap: that, just: hurts, my: eyes)&#x000A;  because_i_will_find_you(and: hurt, you: for: writing, code: that, is: this, hard: to_read)&#x000A;end</textarea>
-</p>
-    
-    <h1>Get some</h1>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Style</h1>
+        
+        <h3>FFFFUUUUUUU</h3>
+        
+        <p><textarea class='code' display='none' mode='ruby'>def busy_method&#x000A;  please_dont_write_longs_lines(of: code, that: go, on: and)&#x000A;  followed_by_more(really: hard, to: read, crap: that, hurts_my: eyes)&#x000A;  because_i_will_find_you(and: hurt, you: for: writing, this: shit)&#x000A;end</textarea>
+    </p>
+        
+        <h1>Get some</h1>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
@@ -635,63 +629,56 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>class EXCITINGController < ApplicationController&#x000A;  def timeline; end&#x000A;  def tag; end&#x000A;  def search; end&#x000A;  def detail; end&#x000A;  # and on, and on, and on...&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
-    <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Predictable is good!</h1>
-
-<p><textarea class='code' display='none' mode='ruby'>class VeryBoringController < ApplicationController&#x000A;  def index; end&#x000A;  def new; end&#x000A;  def create; end&#x000A;  def update; end&#x000A;  def show; end&#x000A;  def destroy; end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
-    <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Vocabulary</h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>class UserTeam&#x000A;  belongs_to :user&#x000A;  belongs_to :team&#x000A;end&#x000A;&#x000A;class CandidateEmployerJob&#x000A;end</textarea>
-</p>
-    
-    <h1>Get one</h1>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
-    <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Better</h1>
-    
-    <p><textarea class='code' display='none' mode='ruby'>class TeamMembership&#x000A;  belongs_to :user&#x000A;  belongs_to :team&#x000A;end&#x000A;&#x000A;class Applicant&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
-    <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>But enough code</h1>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
-    <section class='full-background han slide'>
       <div class='spacer top'></div>
       <div class='content'>
+        <p><textarea class='code' display='none' mode='ruby'>class EXCITINGController < ApplicationController&#x000A;  def timeline; end&#x000A;  def tag; end&#x000A;  def search; end&#x000A;  def detail; end&#x000A;  # and on, and on, and on...&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Predictable is good!</h1>
         
+        <p><textarea class='code' display='none' mode='ruby'>class VeryBoringController < ApplicationController&#x000A;  def index; end&#x000A;  def new; end&#x000A;  def create; end&#x000A;  def update; end&#x000A;  def show; end&#x000A;  def destroy; end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Vocabulary</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class UserTeam&#x000A;  belongs_to :user&#x000A;  belongs_to :team&#x000A;end&#x000A;&#x000A;class CandidateEmployerJob&#x000A;end</textarea>
+    </p>
+        
+        <h1>Get one</h1>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Better</h1>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class TeamMembership&#x000A;  belongs_to :user&#x000A;  belongs_to :team&#x000A;end&#x000A;&#x000A;class Applicant&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>But enough code</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
     <section class='bottom-right full-background slide starwars'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>Your life &amp; career, at first</h1>
+        <h1>Your career at first</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -738,24 +725,26 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <h1>Citations</h1>
-
-<h3><u><a href="http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052_">Working with Legacy Code</a></u></h3>
-
-<h3><u><a href="http://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672">Refactoring</a></u></h3>
-
-<h3><a href="http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern">Mixins, a Refactoring Anti-Pattern</a></h3>
-
-<h3><a href="http://github.com/elight/modest_presenter">modest_presenter</a></h3>
-
-<h3><a href="http://github.com/jcasimir/draper">draper</a></h3>
-
-<h3><a href="https://www.hdsa.org/donations.html">Huntington's Disease Society of America</a></h3>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Citations</h1>
+        
+        <h3><u><a href="http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052_">Working with Legacy Code</a></u></h3>
+        
+        <h3><u><a href="http://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672">Refactoring</a></u></h3>
+        
+        <h3><a href="http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern">Mixins, a Refactoring Anti-Pattern</a></h3>
+        
+        <h3><a href="http://github.com/elight/modest_presenter">modest_presenter</a></h3>
+        
+        <h3><a href="http://github.com/jcasimir/draper">draper</a></h3>
+        
+        <h3><a href="http://www.inspirationandchai.com/Regrets-of-the-Dying.html">Regrets of the Dying</a></h3>
+        
+        <h3><a href="https://www.hdsa.org/donations.html">Huntington's Disease Society of America</a></h3>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
     <!-- deck.js navigation extension -->
     <a class='deck-prev-link' href='#' title='Previous'>&#8592;</a>
     <a class='deck-next-link' href='#' title='Next'>&#8594;</a>

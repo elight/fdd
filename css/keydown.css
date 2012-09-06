@@ -12,10 +12,10 @@
   right: auto;
   top: auto;
   position: relative;
-  -webkit-transform: none;
   -moz-transform: none;
-  -ms-transform: none;
+  -webkit-transform: none;
   -o-transform: none;
+  -ms-transform: none;
   transform: none; }
 .csstransforms .deck-container .slide h2 {
   border: none; }
@@ -30,20 +30,20 @@ body {
   background-color: #d7d7d7; }
 
 .keydown.deck-container {
-  display: -webkit-box;
   display: -moz-box;
+  display: -webkit-box;
   display: -ms-box;
   display: box;
-  -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
   -ms-box-orient: vertical;
   box-orient: vertical;
-  -webkit-box-align: center;
   -moz-box-align: center;
+  -webkit-box-align: center;
   -ms-box-align: center;
   box-align: center;
-  -webkit-box-pack: center;
   -moz-box-pack: center;
+  -webkit-box-pack: center;
   -ms-box-pack: center;
   box-pack: center; }
   .keydown.deck-container h1 {
@@ -66,42 +66,42 @@ body {
   .keydown.deck-container .deck-status {
     font-size: .75rem; }
   .keydown.deck-container .slide {
-    display: -webkit-box;
     display: -moz-box;
+    display: -webkit-box;
     display: -ms-box;
     display: box;
-    -webkit-box-orient: vertical;
     -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
     -ms-box-orient: vertical;
     box-orient: vertical;
-    -webkit-box-align: center;
     -moz-box-align: center;
+    -webkit-box-align: center;
     -ms-box-align: center;
     box-align: center;
-    -webkit-box-pack: center;
     -moz-box-pack: center;
+    -webkit-box-pack: center;
     -ms-box-pack: center;
     box-pack: center;
     background-color: white; }
     .keydown.deck-container .slide.full-background {
-      -webkit-background-size: cover;
       -moz-background-size: cover;
+      -webkit-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
-      display: -webkit-box;
       display: -moz-box;
+      display: -webkit-box;
       display: -ms-box;
       display: box;
-      -webkit-box-orient: vertical;
       -moz-box-orient: vertical;
+      -webkit-box-orient: vertical;
       -ms-box-orient: vertical;
       box-orient: vertical;
-      -webkit-box-align: start;
       -moz-box-align: start;
+      -webkit-box-align: start;
       -ms-box-align: start;
       box-align: start;
-      -webkit-box-pack: start;
       -moz-box-pack: start;
+      -webkit-box-pack: start;
       -ms-box-pack: start;
       box-pack: start; }
       .keydown.deck-container .slide.full-background.FFFFFUUUUUUU- {
@@ -125,7 +125,7 @@ body {
       .keydown.deck-container .slide.full-background.atari400 {
         background-image: url(../images/atari400.jpg); }
       .keydown.deck-container .slide.full-background.crap {
-        background-image: url(../images/crap.jpg); }
+        background-image: url(../images/crap.png); }
       .keydown.deck-container .slide.full-background.angry {
         background-image: url(../images/angry.jpg); }
       .keydown.deck-container .slide.full-background.fear-anger-hate {
@@ -144,8 +144,6 @@ body {
         background-image: url(../images/r2d2-hero.jpg); }
       .keydown.deck-container .slide.full-background.c3p0-backwards {
         background-image: url(../images/c3p0-backwards.png); }
-      .keydown.deck-container .slide.full-background.han {
-        background-image: url(../images/han.jpg); }
       .keydown.deck-container .slide.full-background.starwars {
         background-image: url(../images/starwars.jpg); }
       .keydown.deck-container .slide.full-background.fulloffuck {
@@ -181,105 +179,105 @@ body {
         right: 0;
         top: 20%; }
     .keydown.deck-container .slide.left {
-      display: -webkit-box;
       display: -moz-box;
+      display: -webkit-box;
       display: -ms-box;
       display: box;
-      -webkit-box-orient: vertical;
       -moz-box-orient: vertical;
+      -webkit-box-orient: vertical;
       -ms-box-orient: vertical;
       box-orient: vertical;
-      -webkit-box-align: start;
       -moz-box-align: start;
+      -webkit-box-align: start;
       -ms-box-align: start;
       box-align: start;
-      -webkit-box-pack: start;
       -moz-box-pack: start;
+      -webkit-box-pack: start;
       -ms-box-pack: start;
       box-pack: start; }
       .keydown.deck-container .slide.left .spacer.top {
-        -webkit-box-flex: 1;
         -moz-box-flex: 1;
+        -webkit-box-flex: 1;
         -ms-box-flex: 1;
         box-flex: 1; }
       .keydown.deck-container .slide.left .spacer.bottom {
-        -webkit-box-flex: 5;
         -moz-box-flex: 5;
+        -webkit-box-flex: 5;
         -ms-box-flex: 5;
         box-flex: 5; }
       .keydown.deck-container .slide.left .content {
-        display: -webkit-box;
         display: -moz-box;
+        display: -webkit-box;
         display: -ms-box;
         display: box;
-        -webkit-box-orient: vertical;
         -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
         -ms-box-orient: vertical;
         box-orient: vertical;
-        -webkit-box-align: start;
         -moz-box-align: start;
+        -webkit-box-align: start;
         -ms-box-align: start;
         box-align: start;
-        -webkit-box-pack: start;
         -moz-box-pack: start;
+        -webkit-box-pack: start;
         -ms-box-pack: start;
         box-pack: start; }
         .keydown.deck-container .slide.left .content > * {
-          display: -webkit-box;
           display: -moz-box;
+          display: -webkit-box;
           display: -ms-box;
           display: box;
-          -webkit-box-orient: vertical;
           -moz-box-orient: vertical;
+          -webkit-box-orient: vertical;
           -ms-box-orient: vertical;
           box-orient: vertical;
-          -webkit-box-align: start;
           -moz-box-align: start;
+          -webkit-box-align: start;
           -ms-box-align: start;
           box-align: start;
-          -webkit-box-pack: start;
           -moz-box-pack: start;
+          -webkit-box-pack: start;
           -ms-box-pack: start;
           box-pack: start; }
     .keydown.deck-container .slide .content {
-      display: -webkit-box;
       display: -moz-box;
+      display: -webkit-box;
       display: -ms-box;
       display: box;
-      -webkit-box-orient: vertical;
       -moz-box-orient: vertical;
+      -webkit-box-orient: vertical;
       -ms-box-orient: vertical;
       box-orient: vertical;
-      -webkit-box-align: center;
       -moz-box-align: center;
+      -webkit-box-align: center;
       -ms-box-align: center;
       box-align: center;
-      -webkit-box-pack: center;
       -moz-box-pack: center;
+      -webkit-box-pack: center;
       -ms-box-pack: center;
       box-pack: center; }
       .keydown.deck-container .slide .content > * {
-        display: -webkit-box;
         display: -moz-box;
+        display: -webkit-box;
         display: -ms-box;
         display: box;
-        -webkit-box-orient: vertical;
         -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
         -ms-box-orient: vertical;
         box-orient: vertical;
-        -webkit-box-align: center;
         -moz-box-align: center;
+        -webkit-box-align: center;
         -ms-box-align: center;
         box-align: center;
-        -webkit-box-pack: center;
         -moz-box-pack: center;
+        -webkit-box-pack: center;
         -ms-box-pack: center;
         box-pack: center; }
       .keydown.deck-container .slide .content .CodeMirror {
         font-size: 1rem; }
     .keydown.deck-container .slide .attribution {
-      -webkit-background-size: contain;
       -moz-background-size: contain;
+      -webkit-background-size: contain;
       -o-background-size: contain;
       background-size: contain;
       position: absolute;
