@@ -43,7 +43,7 @@
   <div class='content'>
     <h1>Evan Light</h1>
 
-<h2><strong><u>Code Janitor</u></strong></h2>
+<h2><strong><u>Freelance Code Janitor</u></strong></h2>
 
 <h2><a href="http://twitter.com/elight">@elight</a></h2>
 
@@ -113,13 +113,15 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1>I've been doing this a while...</h1>
+        
+        <h1>16 years or so</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
     <section class='crap full-background slide top-right'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>... and I've seen a lot of crap!</h1>
+        <h1>... and I've seen a lot of shit</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -137,7 +139,7 @@
       </div>
       <div class='spacer bottom'></div>
     </section>
-    <section class='full-background jarjar slide top-right'>
+    <section class='bottom-right full-background jarjar slide'>
       <div class='spacer top'></div>
       <div class='content'>
         <h1>Let's talk about hate</h1>
@@ -167,8 +169,6 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1><a href="http://smartic.us/2008/08/15/tatft-i-feel-a-revolution-coming-on/">TATFT</a></h1>
-        
-        <h2>Test all the f@!%#ing time!</h2>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -184,11 +184,18 @@
       <div class='spacer bottom'></div>
     </section>
     <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Most Rubyists don't refactor!</h1>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
   <div class='spacer top'></div>
   <div class='content'>
     <h1>Don't try to read this code</h1>
 
-<p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def rectify&#x000A;    if self.payments.find { |p| p.status == "pending" }&#x000A;      self.payments.select { |p| p.status == "pending" } do |p|&#x000A;        p.apply_to!(self)&#x000A;      end&#x000A;    end&#x000A;    if self.bills.find { |b| b.due_date > Time.now }&#x000A;      self.bills.select { |b| b.due_date > Time.now }.each do |b|&#x000A;        b.submit_to_collections!&#x000A;      end&#x000A;    end&#x000A;    if self.bills.find { |b| b.payment_date.nil? }&#x000A;      self.bills.select { |b| b.payment_date.nil? }.each do |b|&#x000A;        b.send_to self&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+<p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def rectify&#x000A;    if self.payments.find { |p| p.status == "pending" }&#x000A;      self.payments.select { |p| p.status == "pending" } do |p|&#x000A;        p.apply_to!(self)&#x000A;      end&#x000A;    end&#x000A;    if self.bills.find { |b| b.due_date < Time.now }&#x000A;      self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;        b.submit_to_collections!&#x000A;      end&#x000A;    end&#x000A;    if self.bills.find { |b| b.payment_date.nil? }&#x000A;      self.bills.select { |b| b.payment_date.nil? }.each do |b|&#x000A;        b.send_to self&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</textarea>
 </p>
   </div>
   <div class='spacer bottom'></div>
@@ -244,7 +251,7 @@
   <div class='content'>
     <h1><a href="http://www.refactoring.com/catalog/extractMethod.html">Extract method</a> (cont'd)</h1>
     
-    <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def process_pending_payments&#x000A;    #...&#x000A;  end&#x000A;&#x000A;  def notify_collections_about_overdue_bills&#x000A;    if self.bills.find { |b| b.due_date > Time.now }&#x000A;      self.bills.select { |b| b.due_date > Time.now }.each do |b|&#x000A;        b.submit_to_collections!&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;&#x000A;  def send_me_my_remaining_bills&#x000A;    # ...&#x000A;  end&#x000A;end</textarea>
+    <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def process_pending_payments&#x000A;    #...&#x000A;  end&#x000A;&#x000A;  def notify_collections_about_overdue_bills&#x000A;    if self.bills.find { |b| b.due_date < Time.now }&#x000A;      self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;        b.submit_to_collections!&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;&#x000A;  def send_me_my_remaining_bills&#x000A;    # ...&#x000A;  end&#x000A;end</textarea>
 </p>
   </div>
   <div class='spacer bottom'></div>
@@ -252,7 +259,7 @@
     <section class='slide'>
   <div class='spacer top'></div>
   <div class='content'>
-    <h1><a href="http://www.refactoring.com/catalog/renameMethod.html">Rename method</a>]</h1>
+    <h1><a href="http://www.refactoring.com/catalog/renameMethod.html">Rename method</a></h1>
     
     <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  # previously just 'rectify'&#x000A;  def rectify_account&#x000A;    process_pending_payments&#x000A;    notify_collections_about_overdue_bills&#x000A;    send_me_my_remaining_bills&#x000A;  end&#x000A;end</textarea>
 </p>
@@ -264,7 +271,7 @@
   <div class='content'>
     <h1>Let's focus here</h1>
     
-    <p><textarea class='code' display='none' mode='ruby'>def notify_collections_about_overdue_bills&#x000A;  if self.bills.find { |b| b.due_date > Time.now }&#x000A;    self.bills.select { |b| b.due_date > Time.now }.each do |b|&#x000A;      b.submit_to_collections!&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    <p><textarea class='code' display='none' mode='ruby'>def notify_collections_about_overdue_bills&#x000A;  if self.bills.find { |b| b.due_date < Time.now }&#x000A;    self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;      b.submit_to_collections!&#x000A;    end&#x000A;  end&#x000A;end</textarea>
 </p>
   </div>
   <div class='spacer bottom'></div>
@@ -282,9 +289,19 @@
     <section class='slide'>
   <div class='spacer top'></div>
   <div class='content'>
-    <h1>Delegate to the extracted class</h1>
+    <h1>Then we have...</h1>
     
-    <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def notify_collections_about_overdue_bills&#x000A;    past_due_bills.each do |bill|&#x000A;      CollectionsClaim.file_against bill&#x000A;    end&#x000A;  end&#x000A;&#x000A;  private&#x000A;&#x000A;  def past_due_bills&#x000A;    self.bills.select { |bill| b.past_due? }&#x000A;  end&#x000A;end&#x000A;&#x000A;class Bill&#x000A;  def past_due?&#x000A;    due_date > Time.now&#x000A;  end&#x000A;end</textarea>
+    <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def notify_collections_about_overdue_bills&#x000A;    if self.bills.find { |b| b.due_date < Time.now }&#x000A;      self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;        CollectionsClaim.file_against bill&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+</p>
+  </div>
+  <div class='spacer bottom'></div>
+</section>
+    <section class='slide'>
+  <div class='spacer top'></div>
+  <div class='content'>
+    <h1>A couple more <a href="http://www.refactoring.com/catalog/extractMethod.html">Extract method</a>s later</h1>
+    
+    <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def notify_collections_about_overdue_bills&#x000A;    past_due_bills.each do |bill|&#x000A;      CollectionsClaim.file_against bill&#x000A;    end&#x000A;  end&#x000A;&#x000A;  private&#x000A;&#x000A;  def past_due_bills&#x000A;    self.bills.select { |bill| b.past_due? }&#x000A;  end&#x000A;end&#x000A;&#x000A;class Bill&#x000A;  def past_due?&#x000A;    due_date < Time.now&#x000A;  end&#x000A;end</textarea>
 </p>
   </div>
   <div class='spacer bottom'></div>
@@ -335,33 +352,10 @@
       </div>
       <div class='spacer bottom'></div>
     </section>
-    <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>require 'delegate'&#x000A;&#x000A;class WithPermissions < SimpleDelegator&#x000A;  def can_perform?(action_name)&#x000A;    # ...&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
-    <section class='slide'>
-  <div class='spacer top'></div>
-  <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>def controller_action&#x000A;  user = User.find(...)&#x000A;  user = WithPermissions.new(user)&#x000A;&#x000A;  unless user.can_perform?(:controller_action)&#x000A;    fail PermissionError, "..."&#x000A;  end&#x000A;end</textarea>
-</p>
-  </div>
-  <div class='spacer bottom'></div>
-</section>
-    <section class='slide'>
-      <div class='spacer top'></div>
-      <div class='content'>
-        <h1>Here's another kind</h1>
-      </div>
-      <div class='spacer bottom'></div>
-    </section>
     <section class='ruby slide'>
   <div class='spacer top'></div>
   <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>class Permissions&#x000A;  def self.for(actor)&#x000A;    @actor = actor&#x000A;  end&#x000A;&#x000A;  def allow?(action_name)&#x000A;    # ...&#x000A;  end&#x000A;end</textarea>
+    <p><textarea class='code' display='none' mode='ruby'>require 'delegate'&#x000A;class UserWithNormalPermissions < SimpleDelegator&#x000A;  ALLOWED_METHODS = %w[do_something]&#x000A;&#x000A;  def method_missing(args={})&#x000A;    unless ALLOWED_METHODS.include?(args[0])&#x000A;      fail PermissionError, ...&#x000A;    end&#x000A;    # Call "super" or else delegation doesn't happen!&#x000A;    super&#x000A;  end&#x000A;end</textarea>
 </p>
   </div>
   <div class='spacer bottom'></div>
@@ -369,7 +363,7 @@
     <section class='slide'>
   <div class='spacer top'></div>
   <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>def controller_action&#x000A;  user = User.find(...)&#x000A;  permissions = Permissions.for(user)&#x000A;&#x000A;  unless permissions.allow?(:controller_action)&#x000A;    fail PermissionError, "..."&#x000A;  end&#x000A;end</textarea>
+    <p><textarea class='code' display='none' mode='ruby'>def some_controller_action&#x000A;  user = UserWithNormalPermissions.new(&#x000A;    User.find(...)&#x000A;  )&#x000A;&#x000A;  user.do_something&#x000A;rescue PermissionError => p&#x000A;  # ...&#x000A;end</textarea>
 </p>
   </div>
   <div class='spacer bottom'></div>
@@ -511,7 +505,7 @@
     <section class='slide'>
   <div class='spacer top'></div>
   <div class='content'>
-    <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  class Worker&#x000A;    # Unforunately have to override Resque::Worker's +run_hook+&#x000A;    # method to call hook on [MySpecialSnowflake gem] rather on&#x000A;    # Resque directly. Any suggestions on how to make this more&#x000A;    # flexible are more than welcome.&#x000A;&#x000A;    def run_hook(name, *args)&#x000A;      # Me: 4 hours of my life... gone&#x000A;      # FFFFFFFUUUUUUUUUUUUUUUU&#x000A;&#x000A;      return unless hook = MySpecialSnowflake.send(name)&#x000A;&#x000A;      # ...&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  class Worker&#x000A;    # Unfortunately have to override Resque::Worker's +run_hook+&#x000A;    # method to call hook on [MySpecialSnowflake gem] rather on&#x000A;    # Resque directly. Any suggestions on how to make this more&#x000A;    # flexible are more than welcome.&#x000A;&#x000A;    def run_hook(name, *args)&#x000A;      # Me: 4 hours of my life... gone&#x000A;      # FFFFFFFUUUUUUUUUUUUUUUU&#x000A;&#x000A;      return unless hook = MySpecialSnowflake.send(name)&#x000A;&#x000A;      # ...&#x000A;    end&#x000A;  end&#x000A;end</textarea>
 </p>
   </div>
   <div class='spacer bottom'></div>
@@ -520,7 +514,7 @@
   <div class='spacer top'></div>
   <div class='content'>
     <p><img src="images/Bullshit.gif" style="width: 600px; height: 300px;"></img>
-    <textarea class='code' display='none' mode='ruby'># Unforunately have to override Resque::Worker's +run_hook+&#x000A;# method to call hook on [MySpecialSnowflake gem] rather on&#x000A;# Resque directly. Any suggestions on how to make this more&#x000A;# flexible are more than welcome.</textarea>
+    <textarea class='code' display='none' mode='ruby'># Unfortunately have to override Resque::Worker's +run_hook+&#x000A;# method to call hook on [MySpecialSnowflake gem] rather on&#x000A;# Resque directly. Any suggestions on how to make this more&#x000A;# flexible are more than welcome.</textarea>
 </p>
   </div>
   <div class='spacer bottom'></div>
@@ -581,7 +575,7 @@
     
     <h3>FFFFUUUUUUU</h3>
     
-    <p><textarea class='code' display='none' mode='ruby'>def busy_method&#x000A;  please_dont_write_longs_lines(of: code, that: go, on: and, on: and, on: and)&#x000A;  followed_by_more(really: hard, to: read, crap: that, just: hurts, my: eyes)&#x000A;  because_i_will_find_you(and: hurt, you: for: writing, code: that, is: this, hard: to_read)&#x000A;end</textarea>
+    <p><textarea class='code' display='none' mode='ruby'>def busy_method&#x000A;  please_dont_write_longs_lines(of: code, that: go, on: and)&#x000A;  followed_by_more(really: hard, to: read, crap: that, hurts_my: eyes)&#x000A;  because_i_will_find_you(and: hurt, you: for: writing, this: shit)&#x000A;end</textarea>
 </p>
     
     <h1>Get some</h1>
@@ -681,17 +675,10 @@
   </div>
   <div class='spacer bottom'></div>
 </section>
-    <section class='full-background han slide'>
-      <div class='spacer top'></div>
-      <div class='content'>
-        
-      </div>
-      <div class='spacer bottom'></div>
-    </section>
     <section class='bottom-right full-background slide starwars'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>Your life &amp; career, at first</h1>
+        <h1>Your career at first</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -751,6 +738,8 @@
 <h3><a href="http://github.com/elight/modest_presenter">modest_presenter</a></h3>
 
 <h3><a href="http://github.com/jcasimir/draper">draper</a></h3>
+
+<h3><a href="http://www.inspirationandchai.com/Regrets-of-the-Dying.html">Regrets of the Dying</a></h3>
 
 <h3><a href="https://www.hdsa.org/donations.html">Huntington's Disease Society of America</a></h3>
   </div>

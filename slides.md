@@ -822,8 +822,8 @@ end
 !NOTES
 * Listen to your frustration
 * Frustration =~ pain/suffering
-* Expectation out of alignment w/ Reality
-* Which is wrong? E or R?
+* Suffering is a teacher
+* Expectation out of alignment w/ Reality: which one is right?
 
 
 !SLIDE bottom-left
@@ -841,11 +841,9 @@ end
 !NOTES
 * Kim
 * 5 regrets of the dying
-* Being true to yourself matters
+* Being true to yourself
 * Lost 2 years of my life
 * Damien Katz
-* Happy
-* Why wait?
 * Jump off that cliff
 
 
