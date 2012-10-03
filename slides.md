@@ -860,4 +860,5 @@ end
 ### [modest_presenter](http://github.com/elight/modest_presenter)
 ### [draper](http://github.com/jcasimir/draper)
 ### [Regrets of the Dying](http://www.inspirationandchai.com/Regrets-of-the-Dying.html)
+### [Damien Katz @ RubyFringe](http://www.infoq.com/presentations/katz-couchdb-and-me)
 ### [Huntington's Disease Society of America](https://www.hdsa.org/donations.html)
