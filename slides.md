@@ -125,9 +125,72 @@
 
 !SLIDE
 # [TATFT](http://smartic.us/2008/08/15/tatft-i-feel-a-revolution-coming-on/)
-!NOTE
-* Bryan Liles in audience
 
+!SLIDE
+# Callbacks
+### FFFFUUUUUUU
+
+!SLIDE
+# Callback example
+#### &nbsp;
+``` ruby
+class User
+  after_save do
+    if name_changed?
+      notify_listeners(:name, self)
+    end
+  end
+  
+  def self.register_listener(listener)
+     # ...
+  end
+end
+```
+
+!SLIDE
+# Callback example (cont'd)
+#### &nbsp;
+``` ruby
+class ClientProxy
+    def initialize
+     User.register_listener(self)
+   end
+		  
+   def receive_notification(field_changed, source)
+     push_change_to_client(field_changed, source)
+   end
+end
+```
+
+
+!SLIDE
+# AR callbacks are Observers
+#### &nbsp;
+> The \[Observer pattern\] is useful mostly for dynamic relationships between objects.
+
+#### - [C2 wiki](http://c2.com/cgi/wiki?ObserverPattern)
+
+!SLIDE
+# Tightly coupled example
+#### &nbsp;
+``` ruby
+class ClientProxy
+  def push_change_to_client(message, source)
+    # ...
+  end
+end
+		 
+class UserController
+  def update
+    User.transaction do
+      user.name = params[:name]
+      user.save
+      client_proxy.push_change_to_client(:name, user)
+    end
+  end
+end
+```
+###### More discussion on this: [Use Rails until it hurts](http://evan.tiggerpalace.com/articles/2012/11/21/use-rails-until-it-hurts/)
 
 !SLIDE
 # The Long & Poorly-Named Method
@@ -142,6 +205,7 @@
 
 !SLIDE
 # Don't try to read this code
+#### &nbsp;
 ```ruby
 class User
   def rectify
@@ -192,6 +256,7 @@ end
 
 !SLIDE
 # [Extract method](http://www.refactoring.com/catalog/extractMethod.html)
+#### &nbsp;
 ```ruby
 class User
   def rectify
@@ -207,6 +272,7 @@ end
 
 !SLIDE
 # [Extract method](http://www.refactoring.com/catalog/extractMethod.html) (cont'd)
+#### &nbsp;
 ```ruby
 class User
   def process_pending_payments
@@ -230,7 +296,7 @@ end
 
 !SLIDE
 # [Rename method](http://www.refactoring.com/catalog/renameMethod.html)
-
+#### &nbsp;
 ```ruby
 class User
   # previously just 'rectify'
@@ -245,6 +311,7 @@ end
 
 !SLIDE
 # Let's focus here
+#### &nbsp;
 ```ruby
   def notify_collections_about_overdue_bills
     if self.bills.find { |b| b.due_date < Time.now }
@@ -263,6 +330,7 @@ end
 
 !SLIDE
 # [Extract class](http://www.refactoring.com/catalog/extractClass.html)
+#### &nbsp;
 ```ruby
 class CollectionClaim
   def self.file_against(bill)
@@ -277,6 +345,7 @@ end
 
 !SLIDE
 # Then we have...
+#### &nbsp;
 ```ruby
 class User
   def notify_collections_about_overdue_bills
@@ -292,6 +361,7 @@ end
 
 !SLIDE
 # A couple more [Extract method](http://www.refactoring.com/catalog/extractMethod.html)s later
+#### &nbsp;
 ```ruby
 class User
   def notify_collections_about_overdue_bills
@@ -315,8 +385,10 @@ end
 ```
 
 
-!SLIDE left
-# Should User know how to rectify his own account
+!SLIDE middle
+# Should User know how 
+# to rectify his own account
+#### &nbsp;
 ## Hint: **rectify** & **account**
 ## Think about it (later ;-) )
 
@@ -339,6 +411,7 @@ end
 
 !SLIDE
 # Move code into modules?
+#### &nbsp;
 ```ruby
 class User
   # Elided for your sanity
@@ -359,11 +432,13 @@ class User
 end
 ```
 ###### See [Mixins, a Refactoring Anti-Pattern](http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern)
-
 !NOTES
 * Steve Klabnik's blog post
 * Now they're just in several files
 * Still too many responsibilities
+
+!SLIDE
+}}} images/picard-facepalm.gif
 
 
 !SLIDE
@@ -489,11 +564,13 @@ end
 
 
 !SLIDE
-# What if we delegate to real objects?
+# What if we delegate 
+# to real objects?
 
 
 !SLIDE
 #Replace this...
+#### &nbsp;
 ```ruby
 module SomeHelper
   def render_whatever_through_a_helper
@@ -510,6 +587,7 @@ end
 
 !SLIDE
 #... with this
+#### &nbsp;
 ```ruby
 class SomeConditionPresenter
   def render
@@ -528,10 +606,9 @@ end
 
 
 !SLIDE
-# We still have to pick a "presenter"
-
-
-!SLIDE
+# We still have to 
+# pick a "presenter"
+#### &nbsp;
 ```ruby
 module FooHelper
   def conditional_presenter
@@ -579,9 +656,9 @@ end
 # Want to try using presenters?
 ## [modest_presenter](http://github.com/elight/modest_presenter)
 ### Warning: I wrote this ;-)
-### Simple implementation but flexible
-## [draper](http://github.com/jcasimir/draper)
-### Convention driven usage but complex implementation
+## [draper](http://github.com/drapergem/draper)
+### More powerful
+### Similar idea, different philosophy
 
 
 !SLIDE
@@ -628,6 +705,7 @@ end
 
 !SLIDE
 # Fork, patch, and pull request!
+#### &nbsp;
 ```ruby
 module Resque
   def self.hook_responders
@@ -649,6 +727,7 @@ end
 
 !SLIDE
 # There is no monkey patch
+#### &nbsp;
 ```ruby
 module Resque
   class Worker
@@ -723,6 +802,9 @@ end
 
 
 !SLIDE
+# Conventions? 
+# What conventions?
+#### &nbsp;
 ```ruby
 class EXCITINGController < ApplicationController
   def timeline; end
@@ -735,6 +817,7 @@ end
 
 !SLIDE
 # Predictable is good!
+#### &nbsp;
 ```ruby
 class VeryBoringController < ApplicationController
   def index; end
@@ -760,6 +843,7 @@ end
 
 !SLIDE
 # Vocabulary
+#### &nbsp;
 ```ruby
 class UserTeam
   belongs_to :user
@@ -779,6 +863,7 @@ end
 
 !SLIDE
 # Better
+#### &nbsp;
 ```ruby
 class TeamMembership
   belongs_to :user
