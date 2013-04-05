@@ -77,7 +77,7 @@
     <section class='bottom-left full-background slide vader'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>How I often feel</h1>
+        <h1>How I used to feel</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -173,6 +173,66 @@
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
+        <h1>Callbacks</h1>
+        
+        <h3>FFFFUUUUUUU</h3>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Callback example</h1>
+        
+        <h4>&nbsp;</h4>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  after_save do&#x000A;    if name_changed?&#x000A;      notify_listeners(:name, self)&#x000A;    end&#x000A;  end&#x000A;  &#x000A;  def self.register_listener(listener)&#x000A;     # ...&#x000A;  end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Callback example (cont'd)</h1>
+        
+        <h4>&nbsp;</h4>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class ClientProxy&#x000A;    def initialize&#x000A;     User.register_listener(self)&#x000A;   end&#x000A;		  &#x000A;   def receive_notification(field_changed, source)&#x000A;     push_change_to_client(field_changed, source)&#x000A;   end&#x000A;end</textarea>
+    </p>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>AR callbacks are Observers</h1>
+        
+        <h4>&nbsp;</h4>
+        
+        <blockquote><p>The [Observer pattern] is useful mostly for dynamic relationships between objects.</p></blockquote>
+        
+        <h4>- <a href="http://c2.com/cgi/wiki?ObserverPattern">C2 wiki</a></h4>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        <h1>Tightly coupled example</h1>
+        
+        <h4>&nbsp;</h4>
+        
+        <p><textarea class='code' display='none' mode='ruby'>class ClientProxy&#x000A;  def push_change_to_client(message, source)&#x000A;    # ...&#x000A;  end&#x000A;end&#x000A;		 &#x000A;class UserController&#x000A;  def update&#x000A;    User.transaction do&#x000A;      user.name = params[:name]&#x000A;      user.save&#x000A;      client_proxy.push_change_to_client(:name, user)&#x000A;    end&#x000A;  end&#x000A;end</textarea>
+    </p>
+        
+        <h6>More discussion on this: <a href="http://evan.tiggerpalace.com/articles/2012/11/21/use-rails-until-it-hurts/">Use Rails until it hurts</a></h6>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
         <h1>The Long &amp; Poorly-Named Method</h1>
         
         <h5>(or, in the words of Samuel L. Jackson, <u>"it's Red, Green, <strong>Refactor</strong> mother%&amp;@#er!"</u>)</h5>
@@ -185,6 +245,8 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1>Most Rubyists don't refactor!</h1>
+        
+        <h3>FFFFUUUUUUU</h3>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -192,6 +254,8 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1>Don't try to read this code</h1>
+        
+        <h4>&nbsp;</h4>
         
         <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def rectify&#x000A;    if self.payments.find { |p| p.status == "pending" }&#x000A;      self.payments.select { |p| p.status == "pending" } do |p|&#x000A;        p.apply_to!(self)&#x000A;      end&#x000A;    end&#x000A;    if self.bills.find { |b| b.due_date < Time.now }&#x000A;      self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;        b.submit_to_collections!&#x000A;      end&#x000A;    end&#x000A;    if self.bills.find { |b| b.payment_date.nil? }&#x000A;      self.bills.select { |b| b.payment_date.nil? }.each do |b|&#x000A;        b.send_to self&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</textarea>
     </p>
@@ -239,6 +303,8 @@
       <div class='content'>
         <h1><a href="http://www.refactoring.com/catalog/extractMethod.html">Extract method</a></h1>
         
+        <h4>&nbsp;</h4>
+        
         <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def rectify&#x000A;    process_pending_payments&#x000A;    notify_collections_about_overdue_bills&#x000A;    send_me_my_remaining_bills&#x000A;  end&#x000A;end</textarea>
     </p>
       </div>
@@ -248,6 +314,8 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1><a href="http://www.refactoring.com/catalog/extractMethod.html">Extract method</a> (cont'd)</h1>
+        
+        <h4>&nbsp;</h4>
         
         <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def process_pending_payments&#x000A;    #...&#x000A;  end&#x000A;&#x000A;  def notify_collections_about_overdue_bills&#x000A;    if self.bills.find { |b| b.due_date < Time.now }&#x000A;      self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;        b.submit_to_collections!&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;&#x000A;  def send_me_my_remaining_bills&#x000A;    # ...&#x000A;  end&#x000A;end</textarea>
     </p>
@@ -259,6 +327,8 @@
       <div class='content'>
         <h1><a href="http://www.refactoring.com/catalog/renameMethod.html">Rename method</a></h1>
         
+        <h4>&nbsp;</h4>
+        
         <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  # previously just 'rectify'&#x000A;  def rectify_account&#x000A;    process_pending_payments&#x000A;    notify_collections_about_overdue_bills&#x000A;    send_me_my_remaining_bills&#x000A;  end&#x000A;end</textarea>
     </p>
       </div>
@@ -268,6 +338,8 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1>Let's focus here</h1>
+        
+        <h4>&nbsp;</h4>
         
         <p><textarea class='code' display='none' mode='ruby'>def notify_collections_about_overdue_bills&#x000A;  if self.bills.find { |b| b.due_date < Time.now }&#x000A;    self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;      b.submit_to_collections!&#x000A;    end&#x000A;  end&#x000A;end</textarea>
     </p>
@@ -279,6 +351,8 @@
       <div class='content'>
         <h1><a href="http://www.refactoring.com/catalog/extractClass.html">Extract class</a></h1>
         
+        <h4>&nbsp;</h4>
+        
         <p><textarea class='code' display='none' mode='ruby'>class CollectionClaim&#x000A;  def self.file_against(bill)&#x000A;    self.new(bill)&#x000A;  end&#x000A;&#x000A;  def initialize&#x000A;    # biz logic would start here&#x000A;  end&#x000A;end</textarea>
     </p>
       </div>
@@ -288,6 +362,8 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1>Then we have...</h1>
+        
+        <h4>&nbsp;</h4>
         
         <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def notify_collections_about_overdue_bills&#x000A;    if self.bills.find { |b| b.due_date < Time.now }&#x000A;      self.bills.select { |b| b.due_date < Time.now }.each do |b|&#x000A;        CollectionsClaim.file_against bill&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</textarea>
     </p>
@@ -299,15 +375,21 @@
       <div class='content'>
         <h1>A couple more <a href="http://www.refactoring.com/catalog/extractMethod.html">Extract method</a>s later</h1>
         
+        <h4>&nbsp;</h4>
+        
         <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  def notify_collections_about_overdue_bills&#x000A;    past_due_bills.each do |bill|&#x000A;      CollectionsClaim.file_against bill&#x000A;    end&#x000A;  end&#x000A;&#x000A;  private&#x000A;&#x000A;  def past_due_bills&#x000A;    self.bills.select { |bill| b.past_due? }&#x000A;  end&#x000A;end&#x000A;&#x000A;class Bill&#x000A;  def past_due?&#x000A;    due_date < Time.now&#x000A;  end&#x000A;end</textarea>
     </p>
       </div>
       <div class='spacer bottom'></div>
     </section>
-    <section class='left slide'>
+    <section class='middle slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>Should User know how to rectify his own account</h1>
+        <h1>Should User know how</h1>
+        
+        <h1>to rectify his own account</h1>
+        
+        <h4>&nbsp;</h4>
         
         <h2>Hint: <strong>rectify</strong> &amp; <strong>account</strong></h2>
         
@@ -336,10 +418,19 @@
       <div class='content'>
         <h1>Move code into modules?</h1>
         
+        <h4>&nbsp;</h4>
+        
         <p><textarea class='code' display='none' mode='ruby'>class User&#x000A;  # Elided for your sanity&#x000A;  # Yes, this is (mostly) real code&#x000A;  # Yes, I helped write it a year or so ago&#x000A;  # Yes, I hate my past self at times&#x000A;&#x000A;  include User::Associations&#x000A;  include User::Validations&#x000A;  include User::Search&#x000A;  include User::DefaultSettings&#x000A;  include User::DefaultPrivacies&#x000A;  include User::Permissions&#x000A;  include User::Invitations&#x000A;  include User::OAuthProvisioning&#x000A;&#x000A;  # even more includes.... HALP!&#x000A;end</textarea>
     </p>
         
         <h6>See <a href="http://blog.steveklabnik.com/posts/2012-05-07-mixins--a-refactoring-anti-pattern">Mixins, a Refactoring Anti-Pattern</a></h6>
+      </div>
+      <div class='spacer bottom'></div>
+    </section>
+    <section class='full-background picard-facepalm slide'>
+      <div class='spacer top'></div>
+      <div class='content'>
+        
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -421,7 +512,9 @@
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>What if we delegate to real objects?</h1>
+        <h1>What if we delegate</h1>
+        
+        <h1>to real objects?</h1>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -429,6 +522,8 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1>Replace this...</h1>
+        
+        <h4>&nbsp;</h4>
         
         <p><textarea class='code' display='none' mode='ruby'>module SomeHelper&#x000A;  def render_whatever_through_a_helper&#x000A;    if some_nasty_condition&#x000A;      render_this&#x000A;    elsif another_nasty_condition&#x000A;      render_that&#x000A;    else&#x000A;      render_those&#x000A;    end&#x000A;  end&#x000A;end</textarea>
     </p>
@@ -440,6 +535,8 @@
       <div class='content'>
         <h1>... with this</h1>
         
+        <h4>&nbsp;</h4>
+        
         <p><textarea class='code' display='none' mode='ruby'>class SomeConditionPresenter&#x000A;  def render&#x000A;    #...&#x000A;  end&#x000A;end&#x000A;&#x000A;class AnotherConditionPresenter&#x000A;  # Same interface as above&#x000A;end&#x000A;&#x000A;class DefaultConditionPresenter&#x000A;  # Get the idea?&#x000A;end</textarea>
     </p>
       </div>
@@ -448,13 +545,12 @@
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
-        <h1>We still have to pick a "presenter"</h1>
-      </div>
-      <div class='spacer bottom'></div>
-    </section>
-    <section class='slide'>
-      <div class='spacer top'></div>
-      <div class='content'>
+        <h1>We still have to</h1>
+        
+        <h1>pick a "presenter"</h1>
+        
+        <h4>&nbsp;</h4>
+        
         <p><textarea class='code' display='none' mode='ruby'>module FooHelper&#x000A;  def conditional_presenter&#x000A;    klass =&#x000A;      if some_nasty_condition&#x000A;        SomeConditionPresenter&#x000A;      elsif another_nasty_condition&#x000A;        AnotherConditionPresenter&#x000A;      else&#x000A;        DefaultConditionPresenter&#x000A;      end&#x000A;    klass.new&#x000A;  end&#x000A;end</textarea>
     </p>
       </div>
@@ -483,11 +579,11 @@
         
         <h3>Warning: I wrote this ;-)</h3>
         
-        <h3>Simple implementation but flexible</h3>
+        <h2><a href="http://github.com/drapergem/draper">draper</a></h2>
         
-        <h2><a href="http://github.com/jcasimir/draper">draper</a></h2>
+        <h3>More powerful</h3>
         
-        <h3>Convention driven usage but complex implementation</h3>
+        <h3>Similar idea, different philosophy</h3>
       </div>
       <div class='spacer bottom'></div>
     </section>
@@ -529,6 +625,8 @@
       <div class='content'>
         <h1>Fork, patch, and pull request!</h1>
         
+        <h4>&nbsp;</h4>
+        
         <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  def self.hook_responders&#x000A;    @hook_responders ||= [self]&#x000A;    @hook_responders&#x000A;  end&#x000A;&#x000A;  def self.register_hook_responder(responder)&#x000A;    hook_responsers << responder&#x000A;  end&#x000A;end</textarea>
     </p>
       </div>
@@ -538,6 +636,8 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1>There is no monkey patch</h1>
+        
+        <h4>&nbsp;</h4>
         
         <p><textarea class='code' display='none' mode='ruby'>module Resque&#x000A;  class Worker&#x000A;    def run_hook(name, *args)&#x000A;      hook = Resque.hook_responders.find { |r| r.send(name) }&#x000A;      return unless hook&#x000A;      # ...&#x000A;    end&#x000A;  end&#x000A;end</textarea>
     </p>
@@ -629,6 +729,12 @@
     <section class='slide'>
       <div class='spacer top'></div>
       <div class='content'>
+        <h1>Conventions?</h1>
+        
+        <h1>What conventions?</h1>
+        
+        <h4>&nbsp;</h4>
+        
         <p><textarea class='code' display='none' mode='ruby'>class EXCITINGController < ApplicationController&#x000A;  def timeline; end&#x000A;  def tag; end&#x000A;  def search; end&#x000A;  def detail; end&#x000A;  # and on, and on, and on...&#x000A;end</textarea>
     </p>
       </div>
@@ -639,6 +745,8 @@
       <div class='content'>
         <h1>Predictable is good!</h1>
         
+        <h4>&nbsp;</h4>
+        
         <p><textarea class='code' display='none' mode='ruby'>class VeryBoringController < ApplicationController&#x000A;  def index; end&#x000A;  def new; end&#x000A;  def create; end&#x000A;  def update; end&#x000A;  def show; end&#x000A;  def destroy; end&#x000A;end</textarea>
     </p>
       </div>
@@ -648,6 +756,8 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1>Vocabulary</h1>
+        
+        <h4>&nbsp;</h4>
         
         <p><textarea class='code' display='none' mode='ruby'>class UserTeam&#x000A;  belongs_to :user&#x000A;  belongs_to :team&#x000A;end&#x000A;&#x000A;class CandidateEmployerJob&#x000A;end</textarea>
     </p>
@@ -660,6 +770,8 @@
       <div class='spacer top'></div>
       <div class='content'>
         <h1>Better</h1>
+        
+        <h4>&nbsp;</h4>
         
         <p><textarea class='code' display='none' mode='ruby'>class TeamMembership&#x000A;  belongs_to :user&#x000A;  belongs_to :team&#x000A;end&#x000A;&#x000A;class Applicant&#x000A;end</textarea>
     </p>
