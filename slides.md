@@ -49,7 +49,7 @@
 
 
 !SLIDE bottom-left
-# How I often feel
+# How I used to feel
 }}} images/vader.jpg
 !NOTE
 * This is also me
@@ -87,7 +87,7 @@
 !SLIDE top-left
 # I've been doing this a while...
 }}} images/atari400.jpg
-# 16 years or so
+# 18 years or so
 
 
 !SLIDE top-right
@@ -201,7 +201,7 @@ end
 
 !SLIDE
 # Most Rubyists don't refactor!
-
+### FFFFUUUUUUU
 
 !SLIDE
 # Don't try to read this code
